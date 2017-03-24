@@ -4,12 +4,17 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build-css": "node-sass --include-path scss scss/main.scss webApp/stylesheets/main.css",
+    "watch-css": "nodemon -e scss -x \"npm run build-css\"",
+    "start" : "node server.js & npm run watch-css"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "angular": "^1.6.3",
     "express": "^4.15.2"
+  },
+  "devDependencies": {
+    "node-sass": "^4.5.1"
   }
 }
