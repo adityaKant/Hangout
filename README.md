@@ -10,5 +10,5 @@
  1. Clone the repository: `git clone https://github.com/adityaKant/Hangout.git`
  2. Install the application: `npm install`
  3. cd into ./webApp and install frontend dependencies `bower install`
- 3. Start the server: `node start`
+ 3. Start the server: `npm start`
  4. View in browser at `http://localhost:3000`
