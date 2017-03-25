@@ -1,7 +1,9 @@
-/**
- * Created by aditya on 3/23/17.
- */
+(function () {
+    'use strict';
 
-var app = angular.module("hangout",[
+    var app = angular.module('hangout',[
+        'hangout.routes'
+    ]);
 
-]);
+
+})();
