@@ -1,10 +1,6 @@
-body {
-  margin: 0;
-  background-color: #bada55; }
-
-.test {
-  color: red; }
-
 h1 {
   color: navy;
   margin-left: 20px; }
+
+nav .custom-navbar {
+  display: none; }
