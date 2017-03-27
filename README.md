@@ -2,8 +2,8 @@
     An Angular app running on Node and Express.
     Angular provides the frontend and accesses the API.
 ## Requirements
- [Node and npm](http://nodejs.org)
- [Bower](https://bower.io/)
+ 1. [Node and npm](http://nodejs.org)
+ 2. [Bower](https://bower.io/)
  
  ## Installation
  
