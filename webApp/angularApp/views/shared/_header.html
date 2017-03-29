@@ -20,10 +20,10 @@
             <div class="header-search" search-bar></div>
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <md-button class="md-raised md-primary green">Sign up</md-button>
+                    <md-button ng-click="ctrl.openModal($event,'signUp')" class="md-raised md-primary green">Sign up</md-button>
                 </li>
                 <li>
-                    <md-button class="md-raised md-accent">Log in</md-button>
+                    <md-button ng-click="ctrl.openModal($event,'logIn')" class="md-raised md-accent">Log in</md-button>
                 </li>
             </ul>
         </div><!-- /.navbar-collapse -->

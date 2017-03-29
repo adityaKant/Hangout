@@ -18,6 +18,7 @@ h1 {
 }
 .homepage-img:before{
   background-image: url('../images/map.png');
+  background-size: cover;
   opacity: 0.5;
   content: '';
   position: absolute;
@@ -46,5 +47,18 @@ h1 {
   .green{
     margin: 0 0 0 0;
     min-width: 1%;
+  }
+}
+#sign-up{
+  md-toolbar:not(.md-menu-toolbar){
+    background-color: #3b1d8f !important;
+  }
+  md-input-container{
+    margin: 10px 0 !important;
+  }
+  .md-input-invalid{
+    .glyphicon{
+      color: rgb(221,44,0);
+    }
   }
 }

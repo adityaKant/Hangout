@@ -5,7 +5,10 @@
         'hangout.routes',
         'hangout.headerController',
         'ngMaterial',
-        'SearchBar.directive'
+        'SearchBar.directive',
+        'signInModal.service',
+        'ngMessages',
+        'ngAria'
     ]);
 
 
