@@ -12,18 +12,53 @@ h1 {
   }
 }
 .homepage-img{
-  background-image: url('../images/map.png');
-  position: fixed;
-  opacity: 0.5;
-  background-color: #ccc;
-  background-size: cover;
-  width: 100%;
-  height: 100%;
+  position: relative;
+  height: 100vh;
+  z-index: 1;
 }
-
+.homepage-img:before{
+  background-image: url('../images/map.png');
+  background-size: cover;
+  opacity: 0.5;
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: -1;
+}
 .md-button.md-primary.md-raised.green{
-  background-color: #5cb85c;
+  background-color: #5cb85c !important;
 }
 .md-button.md-primary.md-raised:not([disabled]):hover, .md-button.md-primary.md-raised{
-  background-color: #4c9a4c;
+  background-color: #4c9a4c !important;
+}
+
+.homepage-search{
+  position: absolute;
+  top: 40%;
+  form{
+    //display: none;
+  }
+}
+
+.header-search{
+  .green{
+    margin: 0 0 0 0;
+    min-width: 1%;
+  }
+}
+#sign-up{
+  md-toolbar:not(.md-menu-toolbar){
+    background-color: #3b1d8f !important;
+  }
+  md-input-container{
+    margin: 10px 0 !important;
+  }
+  .md-input-invalid{
+    .glyphicon{
+      color: rgb(221,44,0);
+    }
+  }
 }
