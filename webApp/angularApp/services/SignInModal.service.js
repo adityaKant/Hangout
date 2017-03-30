@@ -18,8 +18,8 @@
             }
             //method to show the modal
             $mdDialog.show({
-                // controller: controller,
-                // controllerAs: 'modalCtrl',
+                controller: controller,
+                controllerAs: 'modalCtrl',
                 templateUrl: templateUrl,
                 parent: angular.element(document.body),
                 targetEvent: ev,
@@ -35,7 +35,7 @@
     factory.$inject = ['$mdDialog'];
 
     angular.module('signInModal.service',[
-
+        'SignUp.controller'
     ])
         .factory('$signInModal',factory);
 })();
