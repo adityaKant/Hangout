@@ -1,0 +1,54 @@
+<md-dialog aria-label="sign in" flex="25" ng-cloak>
+    <form name="signIn" id="sign-in">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>{{"Log In" | uppercase}}</h2>
+                <span flex></span>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <div layout="column">
+                    <div flex>
+                        <md-input-container class="md-block">
+                            <label>Email Address</label>
+                            <md-icon class="email">
+                                <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+                            </md-icon>
+                            <input type="text" ng-model="modalCtrl.formData.name" name="name" required>
+                            <div ng-if="addSport.name.$touched || modalCtrl.showErrorMessages" ng-messages="addSport.name.$error">
+                                <div ng-message="required">This field is required</div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                </div>
+                <div layout="column">
+                    <div flex>
+                        <md-input-container class="md-block">
+                            <label>Password</label>
+                            <md-icon class="email">
+                                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                            </md-icon>
+                            <input type="text" ng-model="modalCtrl.formData.name" name="name" required>
+                            <div ng-if="addSport.name.$touched || modalCtrl.showErrorMessages" ng-messages="addSport.name.$error">
+                                <div ng-message="required">This field is required</div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                </div>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <div class="create-question-actions">
+                <div class="pull-right">
+                    <md-button class="green-txt-btn">
+                        Cancel
+                    </md-button>
+                    <md-button class="outline-btn-green" style="margin-right:20px;">
+                        Save
+                    </md-button>
+                </div>
+            </div>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

@@ -4,7 +4,11 @@
     var app = angular.module('hangout',[
         'hangout.routes',
         'hangout.headerController',
-        'ngMaterial'
+        'ngMaterial',
+        'SearchBar.directive',
+        'signInModal.service',
+        'ngMessages',
+        'ngAria'
     ]);
 
 
