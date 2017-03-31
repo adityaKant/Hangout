@@ -49,7 +49,9 @@ h1 {
     min-width: 1%;
   }
 }
+
 #sign-up, #sign-in{
+#sign-up{
   md-toolbar:not(.md-menu-toolbar){
     background-color: #3b1d8f !important;
   }

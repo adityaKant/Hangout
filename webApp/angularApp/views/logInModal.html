@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 <md-dialog aria-label="sign in" flex="25" ng-cloak>
+=======
+<md-dialog aria-label="sign in" flex="50" ng-cloak>
+>>>>>>> 3406537effc92f3b3909b2a4e67bae77f2346e97
     <form name="signIn" id="sign-in">
         <md-toolbar>
             <div class="md-toolbar-tools">
@@ -29,13 +33,8 @@
                             <md-icon class="email">
                                 <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
                             </md-icon>
-                            <input type="text" ng-model="modalCtrl.formData.name" name="name" required>
-                            <div ng-if="addSport.name.$touched || modalCtrl.showErrorMessages" ng-messages="addSport.name.$error">
-                                <div ng-message="required">This field is required</div>
-                            </div>
-                        </md-input-container>
                     </div>
-                </div>
+                  </div>
             </div>
         </md-dialog-content>
         <md-dialog-actions layout="row">
