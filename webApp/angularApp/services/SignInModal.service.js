@@ -9,7 +9,7 @@
         function show(ev,modal){
             var controller, templateUrl;
             if(modal == "logIn"){
-                controller = 'LogInController';
+                controller = 'SessionController';
                 templateUrl = 'angularApp/views/logInModal.html';
             }
             else{
@@ -35,7 +35,8 @@
     factory.$inject = ['$mdDialog'];
 
     angular.module('signInModal.service',[
-        'SignUp.controller'
+        'SignUp.controller',
+        'Session.controller'
     ])
         .factory('$signInModal',factory);
 })();
