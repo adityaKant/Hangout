@@ -8,8 +8,12 @@
         'SearchBar.directive',
         'signInModal.service',
         'ngMessages',
-        'ngAria'
+        'ngAria',
+        'angularLocalStorage',
+        'currentUser.service'
     ]);
 
-
+    app.run(function($currentUser){
+        $currentUser.set({});
+    })
 })();

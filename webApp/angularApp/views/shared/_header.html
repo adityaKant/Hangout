@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default custom-navbar" ng-controller="HeaderController as ctrl">
+<nav class="navbar navbar-default custom-navbar header" ng-controller="HeaderController as ctrl">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -18,7 +18,7 @@
                 <li><a href="#">Link</a></li>
             </ul>
             <div class="header-search" search-bar></div>
-            <ul class="nav navbar-nav navbar-right">
+            <ul ng-if="!ctrl.currentUser.name" class="nav navbar-nav navbar-right">
                 <li>
                     <md-button ng-click="ctrl.openModal($event,'signUp')" class="md-raised md-primary green">Sign up</md-button>
                 </li>
@@ -26,6 +26,11 @@
                     <md-button ng-click="ctrl.openModal($event,'logIn')" class="md-raised md-accent">Log in</md-button>
                 </li>
             </ul>
+            <div class="pull-right" ng-if="ctrl.currentUser.name">
+                <div class="user-handle">
+                    <span class="navbar-text">Signed in as <a href="#" class="navbar-link">{{ctrl.currentUser.name}}</a></span>
+                </div>
+            </div>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
