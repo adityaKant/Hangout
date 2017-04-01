@@ -55,17 +55,18 @@ h1 {
   }
 }
 
-#sign-up, #sign-in{
-#sign-up{
-  md-toolbar:not(.md-menu-toolbar){
-    background-color: #3b1d8f !important;
-  }
-  md-input-container{
-    margin: 10px 0 !important;
-  }
-  .md-input-invalid{
-    .glyphicon{
-      color: rgb(221,44,0);
+#sign-up, #sign-in {
+  #sign-up {
+    md-toolbar:not(.md-menu-toolbar) {
+      background-color: #3b1d8f !important;
+    }
+    md-input-container {
+      margin: 10px 0 !important;
+    }
+    .md-input-invalid {
+      .glyphicon {
+        color: rgb(221, 44, 0);
+      }
     }
   }
 }
