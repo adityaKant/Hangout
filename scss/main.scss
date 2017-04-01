@@ -54,7 +54,9 @@ h1 {
     display: none;
   }
 }
+
 #sign-up, #sign-in{
+#sign-up{
   md-toolbar:not(.md-menu-toolbar){
     background-color: #3b1d8f !important;
   }

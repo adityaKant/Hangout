@@ -1,12 +1,19 @@
 
 //  setup
+require('babel-core/register');
 var express  = require('express');
 var app      = express();
+var bodyParser = require('body-parser');
+var router = require('./routes');
 var oracledb = require('oracledb');
 
+app.use(bodyParser.json());
 app.use(express.static('./webApp'));
 
 // application -------------------------------------------------------------
+
+require('./routes.js')(app);
+
 app.get('/:id', function(req, res) {
     res.sendfile(__dirname + '/webApp/start.js'); // load the single view file (angular will handle the page changes on the front-end)
 });
