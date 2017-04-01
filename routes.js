@@ -9,7 +9,7 @@ app.post('/sign-up', function(req, res){
   var body = req.body;
   signup(req.body.user).then (function(obj){
     console.log(obj);
-    res.send(obj.rows);
+    res.send(JSON.stringify(obj.rows[0]));
   });
 });
 };
