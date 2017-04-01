@@ -42,11 +42,16 @@ h1 {
     //display: none;
   }
 }
+.header{
+  .header-search{
+    .green{
+      margin: 0 0 0 0;
+      min-width: 1%;
+    }
+  }
 
-.header-search{
-  .green{
-    margin: 0 0 0 0;
-    min-width: 1%;
+  .user-handle{
+    display: none;
   }
 }
 
