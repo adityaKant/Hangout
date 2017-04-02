@@ -6,9 +6,12 @@ var app      = express();
 var bodyParser = require('body-parser');
 var router = require('./routes');
 var oracledb = require('oracledb');
+var jwt = require('jwt-simple');
 
 app.use(bodyParser.json());
 app.use(express.static('./webApp'));
+app.set('jwtTokenSecret', 'YOUR_SECRET_STRING');
+
 
 // application -------------------------------------------------------------
 
