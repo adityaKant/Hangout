@@ -8,14 +8,14 @@ var bodyParser = require('body-parser');
       if(result.rows.length == 0)
       {
         console.log("zero rows");
-        return ({success : 'true', found : 'false'});
+        return ({found : 'false'});
       }
       else {
         console.log("More than zero rows");
         return update(user).then(function(result){
 //          resolve ({success : 'true', found : 'true'});
           return select(user).then(function(result){
-            return result;
+            return ({found : 'true' , output : result});
             //resolve(JSON.parse(result.rows[0][0));})
 
         });

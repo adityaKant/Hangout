@@ -3,10 +3,9 @@ var bodyParser = require('body-parser');
 require('async');
 oracledb.autoCommit = true;
 oracledb.outFormat = oracledb.OBJECT;
+
 export function check(user)
 {
-
-
   return oracledb.getConnection(
     {
       user          : "askant",
@@ -22,24 +21,33 @@ export function check(user)
 
         // The "bind value" 180 for the "bind variable" :id
         [user.userID]
-    )
-
-    doRelease(connection);
-
-    return $res;
+      )
+      doRelease(connection);
+      return $res;
   });
-
-  // Note: connections should always be released when not needed
 }
 
-function doRelease(connection)
+export function validate(user)
 {
-  connection.close(
-    function(err) {
-      if (err) {
-        console.error(err.message);
-      }
-    });
+  return oracledb.getConnection(
+    {
+      user          : "askant",
+      password      : "dbmsproject",
+      connectString : "oracle.cise.ufl.edu:1521/orcl"
+    })
+    .then(async function(connection)
+    {  const $res = await connection.execute(
+        // The statement to execute
+        "SELECT USER_ID " +
+          "FROM USER2 " +
+          "WHERE EMAIL= :em AND PASSWD = :ps",
+
+        // The "bind value" 180 for the "bind variable" :id
+        {em : user.email, ps : user.password}
+      )
+      doRelease(connection);
+      return $res;
+  });
 }
 
 
@@ -89,6 +97,17 @@ export function select(user)
   })
   .catch(function(err) {
   console.error(err);
-  return conn.close();
+  return connection.close();
   });
+}
+
+
+function doRelease(connection)
+{
+  connection.close(
+    function(err) {
+      if (err) {
+        console.error(err.message);
+      }
+    });
 }
