@@ -13,12 +13,19 @@
         'currentUser.service',
         'ngResource',
         'api.service',
-        'authInterceptor'
+        'authInterceptor',
+        'ngAnimate',
+        'toastr'
     ]);
 
 
-    app.config(['$httpProvider', function($httpProvider) {
+    app.config(['$httpProvider','toastrConfig', function($httpProvider, toastrConfig) {
         $httpProvider.interceptors.push('authInterceptor');
+
+        angular.extend(toastrConfig, {
+            maxOpened: 2,
+            preventOpenDuplicates: true
+        });
     }]);
 
     app.run(function($currentUser, $localStorage){

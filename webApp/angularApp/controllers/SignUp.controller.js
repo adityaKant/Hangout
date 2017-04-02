@@ -3,7 +3,7 @@
 
     app.controller('SignUpController', ctrl);
 
-    function ctrl($scope, $mdDialog, $currentUser,api) {
+    function ctrl(toastr, $mdDialog, $currentUser,api) {
         var vm = this;
         var currentUser = $currentUser.get();
         vm.closeModal = function(){
@@ -21,10 +21,10 @@
                         for(var k in resp.user) currentUser[k]=resp.user[k];
                         vm.closeModal();
                     },function(errResponse){
-
+                        debugger
                     });
                 },function (errResponse) {
-                    debugger;
+                    toastr.error(errResponse.data,'Authentication error');
                 });
             }
             else{
@@ -34,7 +34,7 @@
     }
 
     ctrl.$inject = [
-        '$scope',
+        'toastr',
         '$mdDialog',
         '$currentUser',
         'api'

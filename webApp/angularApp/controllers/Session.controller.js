@@ -2,7 +2,7 @@
     angular.module('Session.controller',[])
         .controller("SessionController", ctrl);
 
-    function ctrl(api, $currentUser, $mdDialog) {
+    function ctrl(api, $currentUser, $mdDialog, toastr) {
         var vm = this;
         var currentUser = $currentUser.get();
 
@@ -16,7 +16,7 @@
                 for(var k in response.user) currentUser[k]=response.user[k];
                 vm.closeModal();
             },function (errResponse) {
-
+                toastr.error(errResponse.data,'Authentication error');
             });
         };
 
@@ -28,6 +28,7 @@
     ctrl.$inject = [
         'api',
         '$currentUser',
-        '$mdDialog'
+        '$mdDialog',
+        'toastr'
     ];
 })();
