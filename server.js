@@ -1,6 +1,7 @@
 
 //  setup
 require('babel-core/register');
+require("babel-polyfill");
 var express  = require('express');
 var app      = express();
 var bodyParser = require('body-parser');
