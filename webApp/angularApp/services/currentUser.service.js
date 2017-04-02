@@ -7,7 +7,9 @@
             return{
                 get: get,
                 set: set,
-                clear: clear
+                clear: clear,
+                setToken: setToken,
+                getToken: getToken
             };
 
             function get() {
@@ -20,6 +22,14 @@
 
             function clear(){
                 $localStorage.$reset();
+            }
+
+            function setToken(token){
+                $localStorage.token = token;
+            }
+
+            function getToken(){
+                return $localStorage.token;
             }
         })
 })();

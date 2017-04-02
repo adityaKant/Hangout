@@ -16,8 +16,13 @@
                     user : vm.formData
                 };
                 api.Me.save(payLoad,function (response) {
-                    for(var k in response.user) currentUser[k]=response.user[k];
-                    vm.closeModal();
+                    api.Session.save(payLoad,function(resp){
+                        $currentUser.setToken(response.accessToken);
+                        for(var k in resp.user) currentUser[k]=resp.user[k];
+                        vm.closeModal();
+                    },function(errResponse){
+
+                    });
                 },function (errResponse) {
                     debugger;
                 });

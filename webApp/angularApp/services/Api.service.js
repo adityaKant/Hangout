@@ -4,7 +4,9 @@
     ])
         .factory('api',['$resource',function ($resource) {
             return{
-                Me: $resource('/sign-up',{},{})
+                Me: $resource('/sign-up',{},{}),
+
+                Session: $resource('/sign-in',{},{})
             };
         }])
 })();
