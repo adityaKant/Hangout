@@ -18,9 +18,6 @@ app.set('jwtTokenSecret', 'YOUR_SECRET_STRING');
 
 require('./routes.js')(app);
 
-app.get('/:id', function(req, res) {
-    res.sendfile(__dirname + '/webApp/start.js'); // load the single view file (angular will handle the page changes on the front-end)
-});
 app.get('*', function(req, res) {
     res.sendfile(__dirname + '/webApp/index.html'); // load the single view file (angular will handle the page changes on the front-end)
 });

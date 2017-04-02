@@ -11,9 +11,9 @@ module.exports = function(app) {
     signup(req.body.user).then (function(obj){
       console.log(obj);
       if(obj.found == 'true')
-      res.send(JSON.stringify({found  : 'true', user : obj.output.rows[0]}));
+      res.send({found  : 'true', user : obj.output.rows[0]});
       else {
-        res.send(obj);
+        res.send('Invalid userID',400);
       }
     });
   });
@@ -22,6 +22,8 @@ module.exports = function(app) {
     var body = req.body;
     signin(req.body.user).then (function(obj){
       console.log(obj);
+      if(obj.found == 'false')
+        res.send('Invalid password or username',400)
       res.send(obj);
     });
   });
