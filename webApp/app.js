@@ -9,11 +9,14 @@
         'signInModal.service',
         'ngMessages',
         'ngAria',
-        'angularLocalStorage',
-        'currentUser.service'
+        'ngStorage',
+        'currentUser.service',
+        'ngResource',
+        'api.service'
     ]);
 
-    app.run(function($currentUser){
-        $currentUser.set({});
+    app.run(function($currentUser, $localStorage){
+        if(!$localStorage.user)
+            $currentUser.set({});
     })
 })();

@@ -18,7 +18,7 @@
                 <li><a href="#">Link</a></li>
             </ul>
             <div class="header-search" search-bar></div>
-            <ul ng-if="!ctrl.currentUser.name" class="nav navbar-nav navbar-right">
+            <ul ng-if="!ctrl.currentUser.USER_ID" class="nav navbar-nav navbar-right">
                 <li>
                     <md-button ng-click="ctrl.openModal($event,'signUp')" class="md-raised md-primary green">Sign up</md-button>
                 </li>
@@ -26,9 +26,9 @@
                     <md-button ng-click="ctrl.openModal($event,'logIn')" class="md-raised md-accent">Log in</md-button>
                 </li>
             </ul>
-            <div class="pull-right" ng-if="ctrl.currentUser.name">
+            <div class="pull-right" ng-if="ctrl.currentUser.USER_ID">
                 <div class="user-handle">
-                    <span class="navbar-text">Signed in as <a href="#" class="navbar-link">{{ctrl.currentUser.name}}</a></span>
+                    <span class="navbar-text">Signed in as <a href="#" class="navbar-link">{{ctrl.currentUser.FNAME}}</a></span>
                 </div>
             </div>
         </div><!-- /.navbar-collapse -->
