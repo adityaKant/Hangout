@@ -13,10 +13,10 @@
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li><a href="#">Link <span class="sr-only">(current)</span></a></li>
-                <li><a href="#">Link</a></li>
-            </ul>
+            <!--<ul class="nav navbar-nav">-->
+                <!--<li><a href="#">Link <span class="sr-only">(current)</span></a></li>-->
+                <!--<li><a href="#">Link</a></li>-->
+            <!--</ul>-->
             <div class="header-search" search-bar></div>
             <ul ng-if="!ctrl.currentUser.USER_ID" class="nav navbar-nav navbar-right">
                 <li>
@@ -25,12 +25,29 @@
                 <li>
                     <md-button ng-click="ctrl.openModal($event,'logIn')" class="md-raised md-accent">Log in</md-button>
                 </li>
+
             </ul>
-            <div class="pull-right" ng-if="ctrl.currentUser.USER_ID">
-                <div class="user-handle">
-                    <span class="navbar-text">Signed in as <a href="#" class="navbar-link">{{ctrl.currentUser.FNAME}}</a></span>
-                </div>
-            </div>
+            <ul ng-if="ctrl.currentUser.USER_ID" class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        {{ctrl.currentUser.FNAME}}
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="user-handle dropdown-menu">
+                        <li>
+                            <a>
+                                My Profile
+                            </a>
+                        </li>
+                        <li role="separator" class="divider"></li>
+                        <li>
+                            <a ng-click="ctrl.signOut()">
+                                Sign out
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>

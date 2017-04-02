@@ -14,6 +14,12 @@
 
         vm.openModal = function(event,modal){
             $signInModal.show(event,modal);
+        };
+
+        vm.signOut = function(){
+            $currentUser.clear();
+            $currentUser.set({});
+            vm.currentUser = $currentUser.get();
         }
     }
 
