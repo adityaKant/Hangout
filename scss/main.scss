@@ -53,6 +53,17 @@ h1 {
   .user-handle{
     //display: none;
   }
+  li.dropdown.open{
+    a{
+      color: #1d2129 !important;
+    }
+    a.dropdown-toggle{
+      color: white !important;
+      .carat{
+        color: black !important;
+      }
+    }
+  }
 }
 
 #sign-up, #sign-in {
@@ -69,4 +80,8 @@ h1 {
       }
     }
   }
+}
+
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus{
+  background-color: #3b1d8f !important;
 }
