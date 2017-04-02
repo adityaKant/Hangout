@@ -12,8 +12,14 @@
         'ngStorage',
         'currentUser.service',
         'ngResource',
-        'api.service'
+        'api.service',
+        'authInterceptor'
     ]);
+
+
+    app.config(['$httpProvider', function($httpProvider) {
+        $httpProvider.interceptors.push('authInterceptor');
+    }]);
 
     app.run(function($currentUser, $localStorage){
         if(!$localStorage.user)
