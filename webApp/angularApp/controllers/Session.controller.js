@@ -2,11 +2,33 @@
     angular.module('Session.controller',[])
         .controller("SessionController", ctrl);
 
-    function ctrl($scope) {
+    function ctrl(api, $currentUser, $mdDialog, toastr) {
+        var vm = this;
+        var currentUser = $currentUser.get();
 
+        vm.signIn = function(){
+            var payload = {
+                user: vm.formData
+            };
+
+            api.Session.save(payload,function (response) {
+                $currentUser.setToken(response.accessToken);
+                for(var k in response.user) currentUser[k]=response.user[k];
+                vm.closeModal();
+            },function (errResponse) {
+                toastr.error(errResponse.data,'Authentication error');
+            });
+        };
+
+        vm.closeModal = function(){
+            $mdDialog.hide();
+        };
     }
 
     ctrl.$inject = [
-        '$scope'
+        'api',
+        '$currentUser',
+        '$mdDialog',
+        'toastr'
     ];
 })();

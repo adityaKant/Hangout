@@ -9,11 +9,27 @@
         'signInModal.service',
         'ngMessages',
         'ngAria',
-        'angularLocalStorage',
-        'currentUser.service'
+        'ngStorage',
+        'currentUser.service',
+        'ngResource',
+        'api.service',
+        'authInterceptor',
+        'ngAnimate',
+        'toastr'
     ]);
 
-    app.run(function($currentUser){
-        $currentUser.set({});
+
+    app.config(['$httpProvider','toastrConfig', function($httpProvider, toastrConfig) {
+        $httpProvider.interceptors.push('authInterceptor');
+
+        angular.extend(toastrConfig, {
+            maxOpened: 2,
+            preventOpenDuplicates: true
+        });
+    }]);
+
+    app.run(function($currentUser, $localStorage){
+        if(!$localStorage.user)
+            $currentUser.set({});
     })
 })();

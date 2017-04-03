@@ -3,7 +3,7 @@
 
     app.controller('SignUpController', ctrl);
 
-    function ctrl($scope, $mdDialog, $currentUser) {
+    function ctrl(toastr, $mdDialog, $currentUser,api) {
         var vm = this;
         var currentUser = $currentUser.get();
         vm.closeModal = function(){
@@ -12,9 +12,20 @@
 
         vm.signUp = function(isValid){
             if(isValid){
-                currentUser.name = 'aditya';
-                // $currentUser.set(currentUser);
-                vm.closeModal();
+                var payLoad = {
+                    user : vm.formData
+                };
+                api.Me.save(payLoad,function (response) {
+                    api.Session.save(payLoad,function(resp){
+                        $currentUser.setToken(response.accessToken);
+                        for(var k in resp.user) currentUser[k]=resp.user[k];
+                        vm.closeModal();
+                    },function(errResponse){
+                        debugger
+                    });
+                },function (errResponse) {
+                    toastr.error(errResponse.data,'Authentication error');
+                });
             }
             else{
                 vm.showErrorMessages = true;
@@ -23,8 +34,9 @@
     }
 
     ctrl.$inject = [
-        '$scope',
+        'toastr',
         '$mdDialog',
-        '$currentUser'
+        '$currentUser',
+        'api'
     ];
 })();
