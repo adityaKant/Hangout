@@ -4,6 +4,11 @@ h1 {
   margin-left: 20px;
 }
 
+body {
+  height: initial !important;
+  position: relative;
+}
+
 .custom-navbar{
   margin-bottom: 0 !important;
   background-color: #3b1d8f !important;
@@ -42,11 +47,33 @@ h1 {
     //display: none;
   }
 }
-.header{
+nav.header{
+
+  border-color: #e7e7e7;
+  border-bottom: 0.28571em solid #717173;
+  height: 70px;
+  position: fixed;
+  width: 100%;
+  z-index: 8;
+  top: 0;
+  left: 0;
   .header-search{
     .green{
       margin: 0 0 0 0;
       min-width: 1%;
+    }
+
+    input.form-control{
+      width: 101%;
+      border-radius: 2px 0px 0 2px;
+      height: 36px;
+    }
+
+    .md-button{
+      border-radius: 0px 2px 2px 0px;
+    }
+    .form-group{
+      min-width: 25em;
     }
   }
 
@@ -63,6 +90,13 @@ h1 {
         color: black !important;
       }
     }
+  }
+
+  a.navbar-brand{
+    font-size: x-large;
+  }
+  .header-container{
+    margin-top: 7px;
   }
 }
 
@@ -84,4 +118,47 @@ h1 {
 
 .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus{
   background-color: #3b1d8f !important;
+}
+
+#venues-list{
+  //.scrollable-list{
+  //  height: 70vh;
+  //  overflow-y: scroll;
+  //}
+
+  #filter{
+    position: fixed;
+    top: 126px;
+    z-index: 1;
+    opacity: 0.99;
+
+    md-card, md-content{
+      background: #2d3568;
+    }
+  }
+
+  .filter-btn{
+    background: #EAE8EB;
+    min-height: 4.42857em;
+    margin-bottom: 10px;
+    margin-top: 70px;
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+    -webkit-transition: all 0.5s; // Chrome
+    -moz-transition: all 0.5s; // Mozilla
+    -o-transition: all 0.5s; // Opera
+    transition: all 0.5s;
+
+    div{
+      padding: 12px 20px 0 0;
+    }
+  }
+
+  .filter-btn.nav-up {
+    top: -62px; // same as header height. use variables in LESS/SASS
+  }
+  .venues-list-data{
+    margin-top: 137px;
+  }
 }
