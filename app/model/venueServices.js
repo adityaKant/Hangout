@@ -29,7 +29,7 @@ export function search(object)
     .then(async function(connection)
     {  let $res = await connection.execute(
         // The statement to execute
-        "select VENUE_ID, VENUE_NAME, PHONE, CITY, STATE, COUNTRY, RATING " +
+        "select VENUE_ID, VENUE_NAME, PHONE, CITY, STATE, RATING " +
           "from venue " +
           "WHERE VENUE_NAME LIKE :cond",
         [name]
