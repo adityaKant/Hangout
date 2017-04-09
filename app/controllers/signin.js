@@ -1,5 +1,5 @@
 import {validate, select} from '../model/userServices';
-import {getToken} from './generateToken.js';
+import {getToken} from '../services/generateToken.js';
 
 var bodyParser = require('body-parser');
 

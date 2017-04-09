@@ -1,4 +1,5 @@
 import {check, update, select} from '../model/userServices';
+
 var bodyParser = require('body-parser');
 
   export function signup(user)
