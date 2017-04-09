@@ -25,13 +25,13 @@ module.exports = function(app) {
       res.send(obj);
     });
   });
-  app.post('/venueSearch',function(req, res){
-    var body = req.body;
+  app.get('/venueSearch',function(req, res){
+    var body = { keyword : req.query.keyword};
     venueSearch(body).then (function(obj){
       res.send(obj);
     });
   });
-  app.post('/venue',function(req, res){
+  app.get('/venue',function(req, res){
     var body = req.body;
     venueDetails(body).then (function(obj){
       res.send(obj);

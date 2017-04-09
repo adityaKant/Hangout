@@ -8,15 +8,10 @@ oracledb.outFormat = oracledb.OBJECT;
 
 export function search(object)
 {
-  let name =  '%' + object.input +  '%';
+  console.log(object);
+  let name =  '%' + object.keyword +  '%';
   console.log(name);
-/*  if(object.location)
-  {
-    let lat  = object .lat;
-    let long = object.long;
-    let radius = object.radius;
-  }
-  */
+
   let city;
   if(object.city){
     city = object.city;
@@ -34,7 +29,7 @@ export function search(object)
     .then(async function(connection)
     {  let $res = await connection.execute(
         // The statement to execute
-        "select * " +
+        "select VENUE_ID, VENUE_NAME, PHONE, CITY, STATE, COUNTRY, RATING " +
           "from venue " +
           "WHERE VENUE_NAME LIKE :cond",
         [name]
