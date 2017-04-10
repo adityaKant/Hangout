@@ -26,8 +26,7 @@ module.exports = function(app) {
     });
   });
   app.get('/venues',function(req, res){
-    var body = { keyword : req.query.keyword};
-    venueSearch(body).then (function(obj){
+    venueSearch(req).then (function(obj){
       res.send(obj);
     });
   });

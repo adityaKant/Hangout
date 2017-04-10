@@ -4,35 +4,50 @@ require('async');
 oracledb.autoCommit = true;
 oracledb.outFormat = oracledb.OBJECT;
 
-
-
 export function search(object)
 {
-  console.log(object);
-  let name =  '%' + object.keyword +  '%';
-  console.log(name);
 
-  let city;
-  if(object.city){
-    city = object.city;
+
+  let name
+  if(object.keyword){
+    name =  '%' + object.keyword +  '%';
   }
   else {
-
+    name = '%'
   }
 
+  let condCity;
+  if(object.city){
+    condCity = ' AND CITY = \'' + object.city + '\'';
+  }
+  else {
+    condCity = '';
+  }
+
+  let condRating;
+  if(object.rating){
+    condRating = ' AND rating >= ' + object.rating;
+  }
+  else {
+    condRating = '';
+  }
+
+  let preparedQuery = 'select VENUE_ID, VENUE_NAME, PHONE, CITY, STATE, RATING ' +
+                      'from venue where venue_name like \''+ name + '\'' +
+                      condCity + condRating;
+
+  console.log(preparedQuery);
   return oracledb.getConnection(
     {
       user          : "askant",
       password      : "dbmsproject",
       connectString : "oracle.cise.ufl.edu:1521/orcl"
     })
-    .then(async function(connection)
+    .then(async (connection) =>
     {  let $res = await connection.execute(
         // The statement to execute
-        "select VENUE_ID, VENUE_NAME, PHONE, CITY, STATE, RATING " +
-          "from venue " +
-          "WHERE VENUE_NAME LIKE :cond",
-        [name]
+        preparedQuery,
+        []
         )
         doRelease(connection);
         return $res;
