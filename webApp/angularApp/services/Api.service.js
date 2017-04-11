@@ -6,7 +6,9 @@
             return{
                 Me: $resource('/sign-up',{},{}),
 
-                Session: $resource('/sign-in',{},{})
+                Session: $resource('/sign-in',{},{}),
+
+                Venues: $resource('/venues', {}, {})
             };
         }])
 })();

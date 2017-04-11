@@ -4,6 +4,7 @@
     var app = angular.module('hangout',[
         'hangout.routes',
         'hangout.headerController',
+        'SearchBar.controller',
         'ngMaterial',
         'SearchBar.directive',
         'signInModal.service',
@@ -13,6 +14,7 @@
         'currentUser.service',
         'ngResource',
         'api.service',
+        'VenueList.service',
         'authInterceptor',
         'ngAnimate',
         'toastr'

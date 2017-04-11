@@ -1,9 +1,11 @@
 (function(){
 
-    angular.module("VenuesList.controller",[
+    angular.module("VenuesList.controller",[])
+        .controller('VenuesListController', venueListCtrl);
 
-    ])
-        .controller('VenuesListCtrl', function(){
-
-        });
+    function venueListCtrl(api, $venueList) {
+        var vm = this;
+        vm.venues = $venueList.getVenues();
+        console.log(vm.venues);
+    }
 })();

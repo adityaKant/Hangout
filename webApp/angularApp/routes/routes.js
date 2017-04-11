@@ -17,7 +17,8 @@
                 .state('venues',{
                     url: '/venues',
                     templateUrl: "angularApp/views/venues-list.html",
-                    controller: 'VenuesListCtrl'
+                    controller: 'VenuesListController',
+                    controllerAs: 'VenuesListCtrl'
                 })
         }]);
 })();

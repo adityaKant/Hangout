@@ -96,17 +96,19 @@
             </md-card>
         </div>
     </div>
+    <h1 ng-repeat="venue in VenuesListCtrl.venues">{{ venue.city }}</h1>
+
     <div class="row venues-list-data">
         <div class="col-md-6">
             <div class="panel panel-default">
                 <!-- Default panel contents -->
                 <div class="panel-heading">Places to Chill</div>
-                <div class="panel-body scrollable-list">
+                <div class="panel-body scrollable-list" >
                     <md-content>
                         <md-card>
                             <md-card-title>
                                 <md-card-title-text>
-                                    <span class="md-headline">Card with image</span>
+                                    <span class="md-headline">{{ venue.venue_name }}</span>
                                     <span class="md-subhead">Large</span>
                                 </md-card-title-text>
                                 <md-card-title-media>
