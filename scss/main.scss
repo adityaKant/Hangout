@@ -1,4 +1,5 @@
 $badass: #bada55;
+$font-stack : Helvetica;
 h1 {
   color: navy;
   margin-left: 20px;
@@ -128,12 +129,12 @@ nav.header{
 
   #filter{
     position: fixed;
-    top: 126px;
+    top: 150px;
     z-index: 1;
     opacity: 0.99;
 
     md-card, md-content{
-      background: #2d3568;
+      background: #337ab7;
     }
   }
 

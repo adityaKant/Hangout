@@ -2,13 +2,13 @@
     var module = angular.module('VenueList.service',[]);
 
     module.service ('$venueList', function() {
+        var venues = {};
         return {
-            getVenues : getVenues,
-            venues : {}
+            getVenuesList : getVenuesList
         }
 
-        function getVenues() {
-            return this.venues;
+        function getVenuesList() {
+            return venues;
         }
     })
 
