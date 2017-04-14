@@ -44,9 +44,16 @@ body {
 .homepage-search{
   position: absolute;
   top: 40%;
-  form{
-    //display: none;
+  .navbar-form{
+    width: 100%
   }
+  .form-group{
+    width: 60%;
+    input{
+      width: 100%;
+    }
+  }
+
 }
 nav.header{
 
@@ -129,10 +136,11 @@ nav.header{
 
   #filter{
     position: fixed;
-    top: 150px;
+    top: 126px;
     z-index: 1;
     opacity: 0.99;
-
+    width: 100%;
+    padding: 0 13px;
     md-card, md-content{
       background: #337ab7;
     }
@@ -162,4 +170,7 @@ nav.header{
   .venues-list-data{
     margin-top: 137px;
   }
+}
+.header-container{
+  margin-top: 8px;
 }

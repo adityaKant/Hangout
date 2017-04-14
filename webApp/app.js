@@ -4,7 +4,6 @@
     var app = angular.module('hangout',[
         'hangout.routes',
         'hangout.headerController',
-        'RatingsFilter.controller',
         'SearchBar.controller',
         'ngMaterial',
         'SearchBar.directive',
