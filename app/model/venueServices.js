@@ -7,7 +7,6 @@ oracledb.outFormat = oracledb.OBJECT;
 export function search(object)
 {
 
-
   let name
   if(object.keyword){
     name =  '%' + object.keyword +  '%';
@@ -32,9 +31,21 @@ export function search(object)
     condRating = '';
   }
 
-  let preparedQuery = 'select VENUE_ID, VENUE_NAME, PHONE, CITY, STATE, RATING ' +
+  let start, end;
+  if(object.page && object.per)
+  {
+    start = (object.page - 1)  * object.per;
+    end = (object.page)  * object.per;
+  }
+  else {
+    start = 0;
+    end = 10
+  }
+  let condPage = " r > " + start + " and r <= " +  end;
+
+  let preparedQuery = 'select VENUE_ID, VENUE_NAME, PHONE, CITY, STATE, RATING from (select ROWNUM r, Venue.* ' +
                       'from venue where venue_name like \''+ name + '\'' +
-                      condCity + condRating;
+                      condCity + condRating + ') where ' + condPage;
 
   console.log(preparedQuery);
   return oracledb.getConnection(
