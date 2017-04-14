@@ -49,9 +49,18 @@ body {
   }
   .form-group{
     width: 60%;
-    input{
+    input {
       width: 100%;
+      height: 50px !important;
+      font-size: large;
     }
+  }
+  .md-button.md-raised{
+    height: 43px !important;
+    min-width: 68px !important;
+  }
+  span.glyphicon-search{
+    margin-top: 15px !important;
   }
 
 }
@@ -169,6 +178,10 @@ nav.header{
   }
   .venues-list-data{
     margin-top: 137px;
+  }
+
+  md-card md-card-title md-card-title-media .md-media-lg{
+    width: 224px;
   }
 }
 .header-container{
