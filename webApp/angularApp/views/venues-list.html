@@ -18,7 +18,7 @@
                                 <input ng-model="usersCtrl.filter.last_name" ng-model-options="{updateOn: 'blur'}" type="text">
                             </md-input-container>
                         </div>
-                        <div flex ng-controller = "RatingsFilterController as ratingsCtrl">
+                        <div flex>
                             <md-input-container>
                                 <label>Rating</label>
                                 <md-select ng-model="ratingsCtrl.selectedRating">
@@ -49,13 +49,15 @@
                         <md-card ng-repeat = "venue in VenuesListCtrl.venues.venues">
                             <md-card-title>
                                 <md-card-title-text>
-                                    <span class="md-headline">{{ venue.VENUE_NAME }}</span>
+                                    <span class="md-headline">{{ venue.VENUE_NAME }}{{$index%15}}</span>
                                     <span class="md-subhead">{{ venue.CITY }}, {{ venue.STATE }}</span>
                                     <span class="md-subhead">Phone: {{ venue.PHONE }}</span>
                                     <span class="md-subhead">Rating: {{ venue.RATING }}</span>
                                 </md-card-title-text>
                                 <md-card-title-media>
-                                    <div class="md-media-sm card-media"></div>
+                                    <div class="md-media-lg card-media">
+                                        <img ng-src="../images/placeholder-{{$index%15}}.jpg">
+                                    </div>
                                 </md-card-title-media>
                             </md-card-title>
                         </md-card>
