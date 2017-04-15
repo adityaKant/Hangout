@@ -1,7 +1,7 @@
-import {signup} from './app/controllers/signup.js';
-import {signin} from './app/controllers/signin.js';
-import {venueSearch} from './app/controllers/venueSearch.js';
-import {venueDetails} from './app/controllers/venue.js';
+import {signup} from './app/services/signup.js';
+import {signin} from './app/services/signin.js';
+import {venueSearch} from './app/services/venueSearch.js';
+import {venueDetails} from './app/services/venue.js';
 
 
 var bodyParser = require('body-parser');
