@@ -1,53 +1,56 @@
-<nav class="navbar navbar-default custom-navbar header" ng-controller="HeaderController as ctrl">
-    <div class="container-fluid header-container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" ui-sref="home">{{ctrl.appName}}</a>
-        </div>
+<div ng-controller="HeaderController as ctrl">
+    <nav class="navbar navbar-default custom-navbar header">
+        <div class="container-fluid header-container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" ui-sref="home">{{ctrl.appName}}</a>
+            </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <!--<ul class="nav navbar-nav">-->
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <!--<ul class="nav navbar-nav">-->
                 <!--<li><a href="#">Link <span class="sr-only">(current)</span></a></li>-->
                 <!--<li><a href="#">Link</a></li>-->
-            <!--</ul>-->
-            <div ng-if="ctrl.state.current.name != 'home'" class="header-search" search-bar></div>
-            <ul ng-if="!ctrl.currentUser.USER_ID" class="nav navbar-nav navbar-right">
-                <li>
-                    <md-button ng-click="ctrl.openModal($event,'signUp')" class="md-raised md-primary green">Sign up</md-button>
-                </li>
-                <li>
-                    <md-button ng-click="ctrl.openModal($event,'logIn')" class="md-raised md-accent">Log in</md-button>
-                </li>
+                <!--</ul>-->
+                <div ng-if="ctrl.state.current.name != 'home'" class="header-search" search-bar></div>
+                <ul ng-if="!ctrl.currentUser.USER_ID" class="nav navbar-nav navbar-right">
+                    <li>
+                        <md-button ng-click="ctrl.openModal($event,'signUp')" class="md-raised md-primary green">Sign up</md-button>
+                    </li>
+                    <li>
+                        <md-button ng-click="ctrl.openModal($event,'logIn')" class="md-raised md-accent">Log in</md-button>
+                    </li>
 
-            </ul>
-            <ul ng-if="ctrl.currentUser.USER_ID" class="nav navbar-nav navbar-right">
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        {{ctrl.currentUser.FNAME}}
-                        <span class="caret"></span>
-                    </a>
-                    <ul class="user-handle dropdown-menu">
-                        <li>
-                            <a>
-                                My Profile
-                            </a>
-                        </li>
-                        <li role="separator" class="divider"></li>
-                        <li>
-                            <a ng-click="ctrl.signOut()">
-                                Sign out
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-</nav>
+                </ul>
+                <ul ng-if="ctrl.currentUser.USER_ID" class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            {{ctrl.currentUser.FNAME}}
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="user-handle dropdown-menu">
+                            <li>
+                                <a>
+                                    My Profile
+                                </a>
+                            </li>
+                            <li role="separator" class="divider"></li>
+                            <li>
+                                <a ng-click="ctrl.signOut()">
+                                    Sign out
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+    <md-progress-linear ng-if="ctrl.disable.flag" md-mode="indeterminate"></md-progress-linear>
+</div>

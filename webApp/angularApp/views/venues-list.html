@@ -2,19 +2,19 @@
     <div class="row venues-list-data">
         <div class="col-md-4">
             <div id="filter" >
-                <md-card layout-xs = "column">
+                <md-card>
                     <md-card-content>
                         <md-content layout = "column">
                             <div flex="20">
                                 <md-input-container>
                                     <label>City</label>
-                                    <input ng-model="usersCtrl.filter.last_name" type="text">
+                                    <input ng-model="VenuesListCtrl.filter.city" type="text">
                                 </md-input-container>
                             </div>
                             <div flex="20">
                                 <md-input-container>
                                     <label>State</label>
-                                    <input ng-model="usersCtrl.filter.last_name" type="text">
+                                    <input ng-model="VenuesListCtrl.filter.state" type="text">
                                 </md-input-container>
                             </div>
                             <div flex="20">
@@ -22,19 +22,23 @@
                                     <div flex>
                                         <md-input-container>
                                             <label>Radius</label>
-                                            <md-select ng-model="ratingsCtrl.selectedRating">
-                                                <md-optgroup label = "ratings">
-                                                    <md-option ng-value="rating" ng-repeat="rating in ratingsCtrl.ratings">{{ rating }}</md-option>
+                                            <md-select ng-model="VenuesListCtrl.selectedRadius">
+                                                <md-optgroup label = "Radius">
+                                                    <md-option ng-value="radius" ng-repeat="radius in VenuesListCtrl.radiusOptions">
+                                                        {{ radius }}
+                                                    </md-option>
                                                 </md-optgroup>
                                             </md-select>
                                         </md-input-container>
                                     </div>
                                     <div flex>
                                         <md-input-container>
-                                            <label>Radius</label>
-                                            <md-select ng-model="ratingsCtrl.selectedRating">
+                                            <label>Rating</label>
+                                            <md-select ng-model="VenuesListCtrl.selectedRating">
                                                 <md-optgroup label = "ratings">
-                                                    <md-option ng-value="rating" ng-repeat="rating in ratingsCtrl.ratings">{{ rating }}</md-option>
+                                                    <md-option ng-value="rating" ng-repeat="rating in VenuesListCtrl.ratingsOptions">
+                                                        {{ rating }}
+                                                    </md-option>
                                                 </md-optgroup>
                                             </md-select>
                                         </md-input-container>
@@ -59,8 +63,8 @@
 
                     </md-card-content>
                     <md-card-actions layout="row" layout-align="end end">
-                        <md-button ng-click="usersCtrl.resetFilter()" class="green-txt-btn">Clear</md-button>
-                        <md-button ng-click="usersCtrl.filterUsers()" class="outline-btn-green md-button md-ink-ripple">Filter</md-button>
+                        <md-button ng-click="VenuesListCtrl.resetFilter()" class="green-txt-btn">Clear</md-button>
+                        <md-button ng-click="VenuesListCtrl.applyFilter()" class="outline-btn-green md-button md-ink-ripple">Filter</md-button>
                     </md-card-actions>
                 </md-card>
             </div>
@@ -69,6 +73,20 @@
             <div class="panel panel-default">
                 <!-- Default panel contents -->
                 <div class="panel-heading">Search results for : {{VenuesListCtrl.searchResultsFor}}</div>
+                <nav aria-label="...">
+                    <ul class="pager">
+                        <li>
+                            <a ng-class="{inactiveLink : VenuesListCtrl.prevPageDisabled}" ng-click="VenuesListCtrl.prevPage()">
+                                Previous
+                            </a>
+                        </li>
+                        <li>
+                            <a ng-class="{inactiveLink : VenuesListCtrl.nextPageDisabled}" ng-click="VenuesListCtrl.nextPage()">
+                                Next
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
                 <div class="panel-body scrollable-list" >
                     <md-content ng-if = "!VenueListCtrl.venues.venues">
                         <md-card ui-sref="getVenue({id: venue.VENUE_ID})" ng-repeat = "venue in VenuesListCtrl.venues.venues">
@@ -87,6 +105,22 @@
                             </md-card-title>
                         </md-card>
                     </md-content>
+                </div>
+                <div class="panel-footer">
+                    <nav aria-label="...">
+                        <ul class="pager">
+                            <li>
+                                <a ng-class="{inactiveLink : VenuesListCtrl.prevPageDisabled}" ng-click="VenuesListCtrl.prevPage()">
+                                    Previous
+                                </a>
+                            </li>
+                            <li>
+                                <a ng-class="{inactiveLink : VenuesListCtrl.nextPageDisabled}" ng-click="VenuesListCtrl.nextPage()">
+                                    Next
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
                 </div>
             </div>
         </div>
