@@ -18,7 +18,8 @@
         'VenueList.service',
         'authInterceptor',
         'ngAnimate',
-        'toastr'
+        'toastr',
+        'progressBarFlag.service'
     ]);
 
 

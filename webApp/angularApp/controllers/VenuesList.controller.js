@@ -3,7 +3,7 @@
     angular.module("VenuesList.controller",[])
         .controller('VenuesListController', venueListCtrl);
 
-    function venueListCtrl(api, $venueList, $stateParams) {
+    function venueListCtrl(api, $venueList, $stateParams, $progressBarFlag) {
         var vm = this;
         vm.filter = {};
         vm.filter.categories = [];
@@ -14,9 +14,12 @@
         var filtersApplied = false;
         vm.nextPageDisabled = false;
         vm.prevPageDisabled = true;
+        var progressBar = $progressBarFlag.get();
 
         var getVenuesList = function(payload){
+            progressBar.flag = true;
             api.Venues.get(payload,function (response) {
+                progressBar.flag = false;
                 vm.venues.venues = response.venues;
                 if(response.venues.length < per)
                     vm.nextPageDisabled = true;
