@@ -200,3 +200,14 @@ nav.header{
 .header-container{
   margin-top: 8px;
 }
+.inactiveLink {
+  pointer-events: none;
+  cursor: default;
+  background-color: lightgrey;
+  color: lightgrey;
+}
+
+md-progress-linear{
+  top: 68px;
+  z-index: 2;
+}
