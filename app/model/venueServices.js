@@ -7,7 +7,8 @@ oracledb.outFormat = oracledb.OBJECT;
 export function search(object)
 {
 
-  let name
+  let name, condCity = '', condState = '', condRating = '', condRadius = '', condPage;
+
   if(object.keyword){
     name =  '%' + object.keyword +  '%';
   }
@@ -15,20 +16,27 @@ export function search(object)
     name = '%'
   }
 
-  let condCity;
-  if(object.city){
-    condCity = ' AND CITY = \'' + object.city + '\'';
-  }
-  else {
-    condCity = '';
-  }
 
-  let condRating;
-  if(object.rating){
-    condRating = ' AND rating >= ' + object.rating;
-  }
-  else {
-    condRating = '';
+  if(object.filter)
+  {
+    let filters = JSON.parse(object.filter);
+
+    if(filters.city){
+      condCity = ' AND CITY = \'' + filters.city + '\'';
+    }
+
+    if(filters.state){
+      condState = ' AND STATE = \'' + filters.state + '\'';
+    }
+
+    if(filters.rating){
+      condRating = ' AND rating >= ' + filters.rating;
+    }
+
+    if(filters.latitude && filters.longitude && filters.radius){
+      condRadius = ' AND POWER( ( 69.1 * ( Longitude - - ' + filters.longitude + ' ) * cos( ' + filters.latitude + ' / 57.3 ) ) , 2 ) + POWER( ( 69.1 * ( Latitude - ' + filters.latitude + ' ) ) , 2 ) < ( ' + filters.radius + ' * ' + filters.radius + ' ) ';
+    }
+
   }
 
   let start, end;
@@ -41,13 +49,14 @@ export function search(object)
     start = 0;
     end = 10
   }
-  let condPage = " r > " + start + " and r <= " +  end;
+  condPage = " r > " + start + " and r <= " +  end;
 
   let preparedQuery = 'select VENUE_ID, VENUE_NAME, PHONE, CITY, STATE, RATING from (select ROWNUM r, Venue.* ' +
                       'from venue where venue_name like \''+ name + '\'' +
-                      condCity + condRating + ') where ' + condPage;
+                      condCity + condRating + condState + condRadius +  ') where ' + condPage;
 
   console.log(preparedQuery);
+
   return oracledb.getConnection(
     {
       user          : "askant",
