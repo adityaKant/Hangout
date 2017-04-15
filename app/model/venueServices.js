@@ -23,6 +23,14 @@ export function search(object)
     condCity = '';
   }
 
+  let condState;
+  if(object.state){
+    condState = ' AND STATE = \'' + object.state + '\'';
+  }
+  else {
+    condState = '';
+  }
+
   let condRating;
   if(object.rating){
     condRating = ' AND rating >= ' + object.rating;
@@ -43,9 +51,18 @@ export function search(object)
   }
   let condPage = " r > " + start + " and r <= " +  end;
 
+  let condRadius;
+  if(object.latitude && object.longitude && object.radius)
+  {
+    condRadius = ' AND POWER( ( 69.1 * ( Longitude - - ' + object.longitude + ' ) * cos( ' + object.latitude + ' / 57.3 ) ) , 2 ) + POWER( ( 69.1 * ( Latitude - ' + object.latitude + ' ) ) , 2 ) < ( ' + object.radius + ' * ' + object.radius + ' ) ';
+  }
+  else {
+    condRadius = ' ';
+  }
+
   let preparedQuery = 'select VENUE_ID, VENUE_NAME, PHONE, CITY, STATE, RATING from (select ROWNUM r, Venue.* ' +
                       'from venue where venue_name like \''+ name + '\'' +
-                      condCity + condRating + ') where ' + condPage;
+                      condCity + condRating + condState + condRadius +  ') where ' + condPage;
 
   console.log(preparedQuery);
   return oracledb.getConnection(
