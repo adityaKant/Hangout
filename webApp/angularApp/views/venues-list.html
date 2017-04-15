@@ -1,34 +1,59 @@
 <div class="container-fluid" id="venues-list">
-    <!--<div class="row filter-btn nav-down">-->
-        <!--<div class="pull-right">-->
-            <!--<button class="btn btn-primary" data-toggle="collapse" data-target="#filter">-->
-                <!--Filters-->
-                <!--<span class="caret"></span>-->
-            <!--</button>-->
-        <!--</div>-->
-    <!--</div>-->
-
     <div class="row venues-list-data">
         <div class="col-md-4">
             <div id="filter" >
                 <md-card layout-xs = "column">
                     <md-card-content>
                         <md-content layout = "column">
-                            <div flex>
+                            <div flex="20">
                                 <md-input-container>
                                     <label>City</label>
-                                    <input ng-model="usersCtrl.filter.last_name" ng-model-options="{updateOn: 'blur'}" type="text">
+                                    <input ng-model="usersCtrl.filter.last_name" type="text">
                                 </md-input-container>
                             </div>
-                            <div flex>
+                            <div flex="20">
                                 <md-input-container>
-                                    <label>Rating</label>
-                                    <md-select ng-model="ratingsCtrl.selectedRating">
-                                        <md-optgroup label = "ratings">
-                                            <md-option ng-value="rating" ng-repeat="rating in ratingsCtrl.ratings">{{ rating }}</md-option>
-                                        </md-optgroup>
-                                    </md-select>
+                                    <label>State</label>
+                                    <input ng-model="usersCtrl.filter.last_name" type="text">
                                 </md-input-container>
+                            </div>
+                            <div flex="20">
+                                <div layout="row">
+                                    <div flex>
+                                        <md-input-container>
+                                            <label>Radius</label>
+                                            <md-select ng-model="ratingsCtrl.selectedRating">
+                                                <md-optgroup label = "ratings">
+                                                    <md-option ng-value="rating" ng-repeat="rating in ratingsCtrl.ratings">{{ rating }}</md-option>
+                                                </md-optgroup>
+                                            </md-select>
+                                        </md-input-container>
+                                    </div>
+                                    <div flex>
+                                        <md-input-container>
+                                            <label>Radius</label>
+                                            <md-select ng-model="ratingsCtrl.selectedRating">
+                                                <md-optgroup label = "ratings">
+                                                    <md-option ng-value="rating" ng-repeat="rating in ratingsCtrl.ratings">{{ rating }}</md-option>
+                                                </md-optgroup>
+                                            </md-select>
+                                        </md-input-container>
+                                    </div>
+                                </div>
+                            </div>
+                            <div flex="40" class="filter-categories-cntr">
+                                <form name="categories">
+                                    <md-chips ng-model="VenuesListCtrl.filter.categories" name="fruitName"
+                                              md-removable="VenuesListCtrl.removable" placeholder="Filter Categories...">
+                                    </md-chips>
+                                    <md-chip-template>
+                                        <strong>{{$chip}}</strong>
+                                    </md-chip-template>
+
+                                    <!--<div class="errors" ng-messages="fruitForm.fruitName.$error">-->
+                                        <!--<div ng-message="md-max-chips">Maximum number of chips reached.</div>-->
+                                    <!--</div>-->
+                                </form>
                             </div>
                         </md-content>
 
@@ -49,7 +74,7 @@
                         <md-card ui-sref="getVenue({id: venue.VENUE_ID})" ng-repeat = "venue in VenuesListCtrl.venues.venues">
                             <md-card-title>
                                 <md-card-title-text>
-                                    <span class="md-headline">{{ venue.VENUE_NAME }}{{$index%15}}</span>
+                                    <span class="md-headline">{{ venue.VENUE_NAME }}</span>
                                     <span class="md-subhead">{{ venue.CITY }}, {{ venue.STATE }}</span>
                                     <span class="md-subhead">Phone: {{ venue.PHONE }}</span>
                                     <span class="md-subhead">Rating: {{ venue.RATING }}</span>

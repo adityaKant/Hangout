@@ -154,8 +154,17 @@ nav.header{
     md-card, md-content{
       height: 100%;
     }
+    md-content{
+      padding-left: 20px;
+    }
     md-card-content{
       height: 90%;
+    }
+    .filter-categories-cntr{
+      width:90%;
+    }
+    md-input-container{
+      width: 80%;
     }
   }
 

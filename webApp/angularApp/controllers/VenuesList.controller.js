@@ -5,6 +5,8 @@
 
     function venueListCtrl(api, $venueList, $stateParams) {
         var vm = this;
+        vm.filter = {};
+        vm.filter.categories = [];
         vm.venues = $venueList.getVenuesList();
         vm.searchResultsFor = $stateParams.search;
 
