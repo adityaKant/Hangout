@@ -1,189 +1,94 @@
 <div class="container-fluid" id="venues-list">
-    <div class="row filter-btn nav-down">
-        <div class="pull-right">
-            <button class="btn btn-primary" data-toggle="collapse" data-target="#filter">
-                Filters
-                <span class="caret"></span>
-            </button>
-        </div>
-    </div>
-    <div class="row">
-        <div id="filter" class="filter-container collapse">
-            <md-card>
-                <md-card-content>
-                    <h2>Filters</h2>
-                    <md-content layout-gt-sm="row" layout-padding>
-                        <div class="padding-0">
-                            <md-input-container>
-                                <label>Last Name</label>
-                                <md-select ng-model="usersCtrl.filter.last_name_type">
-                                    <md-option ng-value="type" ng-repeat="type in usersCtrl.filterTypes">
-                                        {{type}}
-                                    </md-option>
-                                </md-select>
-                            </md-input-container>
-                            <md-input-container>
-                                <label>Last Name</label>
-                                <input ng-model="usersCtrl.filter.last_name" ng-model-options="{updateOn: 'blur'}" type="text">
-                            </md-input-container>
-                        </div>
-                        <div class="padding-0">
-                            <md-input-container>
-                                <label>First Name</label>
-                                <md-select ng-model="usersCtrl.filter.first_name_type">
-                                    <md-option ng-value="type" ng-repeat="type in usersCtrl.filterTypes">
-                                        {{type}}
-                                    </md-option>
-                                </md-select>
-                            </md-input-container>
-                            <md-input-container>
-                                <label>First Name</label>
-                                <input ng-model="usersCtrl.filter.first_name" ng-model-options="{updateOn: 'blur'}" type="text">
-                            </md-input-container>
-                        </div>
-                        <div class="padding-0">
-                            <md-checkbox ng-model="usersCtrl.filter.is_fb_connect" aria-label="Checkbox 1">
-                                FaceBook Connect
-                            </md-checkbox>
-                        </div>
-                        <div class="padding-0">
-                            <md-input-container>
-                                <label>Mobile</label>
-                                <md-select ng-model="usersCtrl.filter.mobile_type">
-                                    <md-option ng-value="type" ng-repeat="type in usersCtrl.filterTypes">
-                                        {{type}}
-                                    </md-option>
-                                </md-select>
-                            </md-input-container>
-                            <md-input-container>
-                                <label>Mobile</label>
-                                <input ng-model="usersCtrl.filter.mobile" ng-model-options="{updateOn: 'blur'}" type="number">
-                            </md-input-container>
-                        </div>
-                        <div class="padding-0">
-                            <md-input-container>
-                                <label>Phone status</label>
-                                <md-select ng-model="usersCtrl.filter.mobile_status">
-                                    <md-option ng-value="status" ng-repeat="status in usersCtrl.mobileStatus">
-                                        {{status}}
-                                    </md-option>
-                                </md-select>
-                            </md-input-container>
-                        </div>
-                        <div class="padding-0 position-left">
-                            <md-datepicker ng-model="usersCtrl.filter.joined_start_date" md-placeholder="joined after"
-                                           name="joined_start_date"></md-datepicker>
-                            <md-datepicker ng-model="usersCtrl.filter.joined_end_date" md-placeholder="joined before"
-                                           name="joined_end_date"></md-datepicker>
-                        </div>
-                        <div class="padding-0">
-                            <md-input-container>
-                                <label>Status</label>
-                                <md-select ng-model="usersCtrl.filter.account_status">
-                                    <md-option ng-value="status" ng-repeat="status in usersCtrl.accountStatus">
-                                        {{status}}
-                                    </md-option>
-                                </md-select>
-                            </md-input-container>
-                        </div>
-                    </md-content>
-
-                </md-card-content>
-                <md-card-actions layout="row" layout-align="end center">
-                    <md-button ng-click="usersCtrl.resetFilter()" class="green-txt-btn">Clear</md-button>
-                    <md-button ng-click="usersCtrl.filterUsers()" class="outline-btn-green md-button md-ink-ripple">Filter</md-button>
-                </md-card-actions>
-            </md-card>
-        </div>
-    </div>
     <div class="row venues-list-data">
-        <div class="col-md-6">
+        <div class="col-md-4">
+            <div id="filter" >
+                <md-card layout-xs = "column">
+                    <md-card-content>
+                        <md-content layout = "column">
+                            <div flex="20">
+                                <md-input-container>
+                                    <label>City</label>
+                                    <input ng-model="usersCtrl.filter.last_name" type="text">
+                                </md-input-container>
+                            </div>
+                            <div flex="20">
+                                <md-input-container>
+                                    <label>State</label>
+                                    <input ng-model="usersCtrl.filter.last_name" type="text">
+                                </md-input-container>
+                            </div>
+                            <div flex="20">
+                                <div layout="row">
+                                    <div flex>
+                                        <md-input-container>
+                                            <label>Radius</label>
+                                            <md-select ng-model="ratingsCtrl.selectedRating">
+                                                <md-optgroup label = "ratings">
+                                                    <md-option ng-value="rating" ng-repeat="rating in ratingsCtrl.ratings">{{ rating }}</md-option>
+                                                </md-optgroup>
+                                            </md-select>
+                                        </md-input-container>
+                                    </div>
+                                    <div flex>
+                                        <md-input-container>
+                                            <label>Radius</label>
+                                            <md-select ng-model="ratingsCtrl.selectedRating">
+                                                <md-optgroup label = "ratings">
+                                                    <md-option ng-value="rating" ng-repeat="rating in ratingsCtrl.ratings">{{ rating }}</md-option>
+                                                </md-optgroup>
+                                            </md-select>
+                                        </md-input-container>
+                                    </div>
+                                </div>
+                            </div>
+                            <div flex="40" class="filter-categories-cntr">
+                                <form name="categories">
+                                    <md-chips ng-model="VenuesListCtrl.filter.categories" name="fruitName"
+                                              md-removable="VenuesListCtrl.removable" placeholder="Filter Categories...">
+                                    </md-chips>
+                                    <md-chip-template>
+                                        <strong>{{$chip}}</strong>
+                                    </md-chip-template>
+
+                                    <!--<div class="errors" ng-messages="fruitForm.fruitName.$error">-->
+                                        <!--<div ng-message="md-max-chips">Maximum number of chips reached.</div>-->
+                                    <!--</div>-->
+                                </form>
+                            </div>
+                        </md-content>
+
+                    </md-card-content>
+                    <md-card-actions layout="row" layout-align="end end">
+                        <md-button ng-click="usersCtrl.resetFilter()" class="green-txt-btn">Clear</md-button>
+                        <md-button ng-click="usersCtrl.filterUsers()" class="outline-btn-green md-button md-ink-ripple">Filter</md-button>
+                    </md-card-actions>
+                </md-card>
+            </div>
+        </div>
+        <div class="col-md-8">
             <div class="panel panel-default">
                 <!-- Default panel contents -->
-                <div class="panel-heading">Places to Chill</div>
-                <div class="panel-body scrollable-list">
-                    <md-content>
-                        <md-card>
+                <div class="panel-heading">Search results for : {{VenuesListCtrl.searchResultsFor}}</div>
+                <div class="panel-body scrollable-list" >
+                    <md-content ng-if = "!VenueListCtrl.venues.venues">
+                        <md-card ui-sref="getVenue({id: venue.VENUE_ID})" ng-repeat = "venue in VenuesListCtrl.venues.venues">
                             <md-card-title>
                                 <md-card-title-text>
-                                    <span class="md-headline">Card with image</span>
-                                    <span class="md-subhead">Large</span>
+                                    <span class="md-headline">{{ venue.VENUE_NAME }}</span>
+                                    <span class="md-subhead">{{ venue.CITY }}, {{ venue.STATE }}</span>
+                                    <span class="md-subhead">Phone: {{ venue.PHONE }}</span>
+                                    <span class="md-subhead">Rating: {{ venue.RATING }}</span>
                                 </md-card-title-text>
                                 <md-card-title-media>
-                                    <div class="md-media-sm card-media"></div>
+                                    <div class="md-media-lg card-media">
+                                        <img ng-src="../images/placeholder-{{$index%15}}.jpg">
+                                    </div>
                                 </md-card-title-media>
                             </md-card-title>
-                            <md-card-actions layout="row" layout-align="end center">
-                                <md-button>Action 1</md-button>
-                                <md-button>Action 2</md-button>
-                            </md-card-actions>
-                        </md-card>
-                        <md-card>
-                            <md-card-title>
-                                <md-card-title-text>
-                                    <span class="md-headline">Card with image</span>
-                                    <span class="md-subhead">Large</span>
-                                </md-card-title-text>
-                                <md-card-title-media>
-                                    <div class="md-media-sm card-media"></div>
-                                </md-card-title-media>
-                            </md-card-title>
-                            <md-card-actions layout="row" layout-align="end center">
-                                <md-button>Action 1</md-button>
-                                <md-button>Action 2</md-button>
-                            </md-card-actions>
-                        </md-card>
-                        <md-card>
-                            <md-card-title>
-                                <md-card-title-text>
-                                    <span class="md-headline">Card with image</span>
-                                    <span class="md-subhead">Large</span>
-                                </md-card-title-text>
-                                <md-card-title-media>
-                                    <div class="md-media-sm card-media"></div>
-                                </md-card-title-media>
-                            </md-card-title>
-                            <md-card-actions layout="row" layout-align="end center">
-                                <md-button>Action 1</md-button>
-                                <md-button>Action 2</md-button>
-                            </md-card-actions>
-                        </md-card>
-                        <md-card>
-                            <md-card-title>
-                                <md-card-title-text>
-                                    <span class="md-headline">Card with image</span>
-                                    <span class="md-subhead">Large</span>
-                                </md-card-title-text>
-                                <md-card-title-media>
-                                    <div class="md-media-sm card-media"></div>
-                                </md-card-title-media>
-                            </md-card-title>
-                            <md-card-actions layout="row" layout-align="end center">
-                                <md-button>Action 1</md-button>
-                                <md-button>Action 2</md-button>
-                            </md-card-actions>
-                        </md-card>
-                        <md-card>
-                            <md-card-title>
-                                <md-card-title-text>
-                                    <span class="md-headline">Card with image</span>
-                                    <span class="md-subhead">Large</span>
-                                </md-card-title-text>
-                                <md-card-title-media>
-                                    <div class="md-media-sm card-media"></div>
-                                </md-card-title-media>
-                            </md-card-title>
-                            <md-card-actions layout="row" layout-align="end center">
-                                <md-button>Action 1</md-button>
-                                <md-button>Action 2</md-button>
-                            </md-card-actions>
                         </md-card>
                     </md-content>
                 </div>
             </div>
-        </div>
-        <div class="col-md-6">
-
         </div>
     </div>
 </div>
