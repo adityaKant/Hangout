@@ -20,5 +20,11 @@
                     controller: 'VenuesListController',
                     controllerAs: 'VenuesListCtrl'
                 })
+                .state('getVenue',{
+                    url: '/venues:id',
+                    templateUrl: "angularApp/views/venue-details.html",
+                    controller: 'VenueController',
+                    controllerAs: 'venueCtrl'
+                })
         }]);
 })();
