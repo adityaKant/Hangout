@@ -200,6 +200,35 @@ nav.header{
 .header-container{
   margin-top: 8px;
 }
+
+#venue-details {
+  margin-top: 105px;
+
+    .venue-info {
+        margin-top: 20px;
+        margin: 2px;
+        font-size: 18px;
+        font-family: calibri;
+    }
+
+    .btn {
+        background-color: #5bc0de;
+        color : white;
+        text-transform: none;
+        font-size: 16px;
+        margin: 0px;
+        margin-top: 5px;
+    }
+
+    .review-count {
+        margin: 10px 2px 2px 2px;
+        padding: 0px;
+
+        .filter {
+            width: 20%;
+        }
+    }
+}
 .inactiveLink {
   pointer-events: none;
   cursor: default;

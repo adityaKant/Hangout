@@ -1,3 +1,41 @@
-<div class="container-fluid">
+<div class="container-fluid" id="venue-details">
+    <div class="row image-slider">
+
+    </div>
+    <div class="row venue-info">
+        <span>Venue Name </span></br>
+        <span>Category </span></br>
+        <span>Address </span></br>
+        <span>Rating </span></br>
+        <md-button align="bottom" class="btn" ng-click="ctrl.openModal($event,'logIn')" class="md-raised md-accent">
+            Add to Favourites
+        </md-button>
+    </div>
+
+    <div class="col-md-9 review-count">
+    <span>
+        Total {{ }} reviews for this place.
+    </span><br>
+        <div>
+
+    <span>
+        Filter By:
+    </span>
+            <input type="text" name="keyword" class="form-control filter" placeholder="Keyword"
+                   ng-model="" required>
+        </div>
+    </div>
+
+    <div class="col-md-3 pull-right suggestions">
+
+    </div>
+
+    <div class="col-md-9 reviews">
+
+    </div>
+
+    <div class="col-md-3 pull-right more-suggestions">
+
+    </div>
 
 </div>
