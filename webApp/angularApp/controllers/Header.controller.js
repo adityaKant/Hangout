@@ -6,9 +6,10 @@
 
     app.controller("HeaderController",headerCtrl);
 
-    function headerCtrl($scope, $signInModal, $currentUser){
+    function headerCtrl($state, $signInModal, $currentUser){
         var vm = this;
         vm.appName = "Hangout";
+        vm.state  = $state;
 
         vm.currentUser = $currentUser.get();
 
@@ -23,5 +24,5 @@
         }
     }
 
-    headerCtrl.$inject = ["$scope", "$signInModal","$currentUser"];
+    headerCtrl.$inject = ["$state", "$signInModal","$currentUser"];
 })();

@@ -1,4 +1,5 @@
 $badass: #bada55;
+$font-stack : Helvetica;
 h1 {
   color: navy;
   margin-left: 20px;
@@ -43,9 +44,25 @@ body {
 .homepage-search{
   position: absolute;
   top: 40%;
-  form{
-    //display: none;
+  .navbar-form{
+    width: 100%
   }
+  .form-group{
+    width: 60%;
+    input {
+      width: 100%;
+      height: 50px !important;
+      font-size: large;
+    }
+  }
+  .md-button.md-raised{
+    height: 43px !important;
+    min-width: 68px !important;
+  }
+  span.glyphicon-search{
+    margin-top: 15px !important;
+  }
+
 }
 nav.header{
 
@@ -131,9 +148,23 @@ nav.header{
     top: 126px;
     z-index: 1;
     opacity: 0.99;
-
+    width: inherit;
+    padding: 0 13px;
+    height: 35em;
     md-card, md-content{
-      background: #2d3568;
+      height: 100%;
+    }
+    md-content{
+      padding-left: 20px;
+    }
+    md-card-content{
+      height: 90%;
+    }
+    .filter-categories-cntr{
+      width:90%;
+    }
+    md-input-container{
+      width: 80%;
     }
   }
 
@@ -161,4 +192,11 @@ nav.header{
   .venues-list-data{
     margin-top: 137px;
   }
+
+  md-card md-card-title md-card-title-media .md-media-lg{
+    width: 224px;
+  }
+}
+.header-container{
+  margin-top: 8px;
 }

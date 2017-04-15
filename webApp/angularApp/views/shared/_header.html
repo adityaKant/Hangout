@@ -1,5 +1,5 @@
 <nav class="navbar navbar-default custom-navbar header" ng-controller="HeaderController as ctrl">
-    <div class="container-fluid">
+    <div class="container-fluid header-container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -17,7 +17,7 @@
                 <!--<li><a href="#">Link <span class="sr-only">(current)</span></a></li>-->
                 <!--<li><a href="#">Link</a></li>-->
             <!--</ul>-->
-            <div class="header-search" search-bar></div>
+            <div ng-if="ctrl.state.current.name != 'home'" class="header-search" search-bar></div>
             <ul ng-if="!ctrl.currentUser.USER_ID" class="nav navbar-nav navbar-right">
                 <li>
                     <md-button ng-click="ctrl.openModal($event,'signUp')" class="md-raised md-primary green">Sign up</md-button>
