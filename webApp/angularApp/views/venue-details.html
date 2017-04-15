@@ -12,30 +12,97 @@
         </md-button>
     </div>
 
-    <div class="col-md-9 review-count">
-    <span>
-        Total {{ }} reviews for this place.
-    </span><br>
-        <div>
+    <div class="row">
+        <div class="col-md-9">
+            <div class="row review-count">
+                 <span>
+                    Total {{ }} reviews for this place.
+                </span><br>
+                <div>
+                    <span>
+                        Filter By:
+                    </span>
+                    <input type="text" name="keyword" class="form-control filter" placeholder="Keyword"
+                           ng-model="" required>
+                </div>
+            </div>
+            <div class="panel reviews">
+                <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">Review</span>
+                        <span class="md-subhead">rating</span>
+                    </md-card-title-text>
+                </md-card-title>
+                </md-card>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="row suggestions">
+                <span>
+                    You may also like
+                </span><br>
+                <div class="row">
+                    <div class="col-md-3">
+                        Image
+                    </div>
+                    <div class="col-md-9">
+                        <span>
+                            Outlet Name
+                        </span><br>
+                        <span>
+                            Location
+                        </span>
+                    </div>
+                </div>
 
-    <span>
-        Filter By:
-    </span>
-            <input type="text" name="keyword" class="form-control filter" placeholder="Keyword"
-                   ng-model="" required>
+                <div class="row">
+                    <div class="col-md-3">
+                        Image
+                    </div>
+                    <div class="col-md-9">
+                        <span>
+                            Outlet Name
+                        </span><br>
+                        <span>
+                            Location
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="row more-suggestions">
+                <span>
+                    Places people like to go after this venue
+                </span><br>
+
+                <div class="row">
+                    <div class="col-md-3">
+                        Image
+                    </div>
+                    <div class="col-md-9">
+                        <span>
+                            Outlet Name
+                        </span><br>
+                        <span>
+                            Location
+                        </span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3">
+                        Image
+                    </div>
+                    <div class="col-md-9">
+                        <span>
+                            Outlet Name
+                        </span><br>
+                        <span>
+                            Location
+                        </span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-
-    <div class="col-md-3 pull-right suggestions">
-
-    </div>
-
-    <div class="col-md-9 reviews">
-
-    </div>
-
-    <div class="col-md-3 pull-right more-suggestions">
-
-    </div>
-
 </div>
