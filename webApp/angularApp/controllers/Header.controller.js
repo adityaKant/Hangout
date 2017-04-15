@@ -6,10 +6,12 @@
 
     app.controller("HeaderController",headerCtrl);
 
-    function headerCtrl($state, $signInModal, $currentUser){
+    function headerCtrl($state, $signInModal, $currentUser, $progressBarFlag){
         var vm = this;
         vm.appName = "Hangout";
         vm.state  = $state;
+        vm.disable = $progressBarFlag.get();
+        vm.disable.flag = false;
 
         vm.currentUser = $currentUser.get();
 
@@ -24,5 +26,5 @@
         }
     }
 
-    headerCtrl.$inject = ["$state", "$signInModal","$currentUser"];
+    headerCtrl.$inject = ["$state", "$signInModal","$currentUser", "$progressBarFlag"];
 })();
