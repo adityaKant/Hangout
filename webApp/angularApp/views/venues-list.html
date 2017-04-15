@@ -1,52 +1,52 @@
 <div class="container-fluid" id="venues-list">
-    <div class="row filter-btn nav-down">
-        <div class="pull-right">
-            <button class="btn btn-primary" data-toggle="collapse" data-target="#filter">
-                Filters
-                <span class="caret"></span>
-            </button>
-        </div>
-    </div>
-    <div class="row">
-        <div id="filter" class="pull-right collapse">
-            <md-card layout-xs = "column">
-                <md-card-content>
-                    <md-content layout = "column">
-                        <div flex>
-                            <md-input-container>
-                                <label>City</label>
-                                <input ng-model="usersCtrl.filter.last_name" ng-model-options="{updateOn: 'blur'}" type="text">
-                            </md-input-container>
-                        </div>
-                        <div flex>
-                            <md-input-container>
-                                <label>Rating</label>
-                                <md-select ng-model="ratingsCtrl.selectedRating">
-                                    <md-optgroup label = "ratings">
-                                        <md-option ng-value="rating" ng-repeat="rating in ratingsCtrl.ratings">{{ rating }}</md-option>
-                                    </md-optgroup>
-                                </md-select>
-                            </md-input-container>
-                        </div>
-                    </md-content>
-
-                </md-card-content>
-                <md-card-actions layout="row" layout-align="end end">
-                    <md-button ng-click="usersCtrl.resetFilter()" class="green-txt-btn">Clear</md-button>
-                    <md-button ng-click="usersCtrl.filterUsers()" class="outline-btn-green md-button md-ink-ripple">Filter</md-button>
-                </md-card-actions>
-            </md-card>
-        </div>
-    </div>
+    <!--<div class="row filter-btn nav-down">-->
+        <!--<div class="pull-right">-->
+            <!--<button class="btn btn-primary" data-toggle="collapse" data-target="#filter">-->
+                <!--Filters-->
+                <!--<span class="caret"></span>-->
+            <!--</button>-->
+        <!--</div>-->
+    <!--</div>-->
 
     <div class="row venues-list-data">
-        <div class="col-md-6">
+        <div class="col-md-4">
+            <div id="filter" >
+                <md-card layout-xs = "column">
+                    <md-card-content>
+                        <md-content layout = "column">
+                            <div flex>
+                                <md-input-container>
+                                    <label>City</label>
+                                    <input ng-model="usersCtrl.filter.last_name" ng-model-options="{updateOn: 'blur'}" type="text">
+                                </md-input-container>
+                            </div>
+                            <div flex>
+                                <md-input-container>
+                                    <label>Rating</label>
+                                    <md-select ng-model="ratingsCtrl.selectedRating">
+                                        <md-optgroup label = "ratings">
+                                            <md-option ng-value="rating" ng-repeat="rating in ratingsCtrl.ratings">{{ rating }}</md-option>
+                                        </md-optgroup>
+                                    </md-select>
+                                </md-input-container>
+                            </div>
+                        </md-content>
+
+                    </md-card-content>
+                    <md-card-actions layout="row" layout-align="end end">
+                        <md-button ng-click="usersCtrl.resetFilter()" class="green-txt-btn">Clear</md-button>
+                        <md-button ng-click="usersCtrl.filterUsers()" class="outline-btn-green md-button md-ink-ripple">Filter</md-button>
+                    </md-card-actions>
+                </md-card>
+            </div>
+        </div>
+        <div class="col-md-8">
             <div class="panel panel-default">
                 <!-- Default panel contents -->
-                <div class="panel-heading">Places to Chill</div>
+                <div class="panel-heading">Search results for : {{VenuesListCtrl.searchResultsFor}}</div>
                 <div class="panel-body scrollable-list" >
                     <md-content ng-if = "!VenueListCtrl.venues.venues">
-                        <md-card ng-repeat = "venue in VenuesListCtrl.venues.venues">
+                        <md-card ui-sref="getVenue({id: venue.VENUE_ID})" ng-repeat = "venue in VenuesListCtrl.venues.venues">
                             <md-card-title>
                                 <md-card-title-text>
                                     <span class="md-headline">{{ venue.VENUE_NAME }}{{$index%15}}</span>
@@ -64,9 +64,6 @@
                     </md-content>
                 </div>
             </div>
-        </div>
-        <div class="col-md-6">
-
         </div>
     </div>
 </div>

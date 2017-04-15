@@ -148,10 +148,14 @@ nav.header{
     top: 126px;
     z-index: 1;
     opacity: 0.99;
-    width: 100%;
+    width: inherit;
     padding: 0 13px;
+    height: 35em;
     md-card, md-content{
-      background: #337ab7;
+      height: 100%;
+    }
+    md-card-content{
+      height: 90%;
     }
   }
 

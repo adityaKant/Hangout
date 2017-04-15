@@ -14,8 +14,9 @@
 
                 api.Venues.get(payload, function(response) {
                         venuesList.venues = response.venues;
+                        venuesList.keyword = vm.formdata.keyword;
                         if($state.current.name != 'venues')
-                            $state.go('venues');
+                            $state.go('venues',{search: vm.formdata.keyword});
                     },
                     function(errResponse) {
 

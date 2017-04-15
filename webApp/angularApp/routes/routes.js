@@ -15,13 +15,16 @@
                     templateUrl: "angularApp/views/homepage.html"
                 })
                 .state('venues',{
-                    url: '/venues',
+                    url: '/venues?search',
                     templateUrl: "angularApp/views/venues-list.html",
                     controller: 'VenuesListController',
-                    controllerAs: 'VenuesListCtrl'
+                    controllerAs: 'VenuesListCtrl',
+                    params: {
+                        search: ''
+                    }
                 })
                 .state('getVenue',{
-                    url: '/venues:id',
+                    url: '/venues/:id',
                     templateUrl: "angularApp/views/venue-details.html",
                     controller: 'VenueController',
                     controllerAs: 'venueCtrl'
