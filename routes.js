@@ -33,7 +33,7 @@ module.exports = function(app) {
     });
   });
   app.get('/venues/:id',function(req, res){
-    var body = req.body;
+    var body = req.params;
     venueDetails(body).then (function(obj){
       res.send(obj);
     });

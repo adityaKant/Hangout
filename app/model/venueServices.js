@@ -94,8 +94,16 @@ export function getDetails(object)
           "WHERE VENUE_ID = :id ",
         [object.id]
         )
+
+        let categories = await connection.execute(
+            // The statement to execute
+            "select cat.CAT_NAME " +
+              "from CATEGORY cat, VENUE_BELONGS_TO vb " +
+              "WHERE vb.CAT_ID = cat.CAT_ID AND vb.VENUE_ID = :id ",
+            [object.id]
+            )
         doRelease(connection);
-        return $res;
+        return {venue : $res.rows[0], category : categories.rows};
   })
   .catch(function(err) {
   console.error(err);
