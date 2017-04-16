@@ -3,7 +3,8 @@
 
     angular.module("hangout.routes",[
         'ui.router',
-        'VenuesList.controller'
+        'VenuesList.controller',
+        'Venue.controller'
     ])
         .config(['$stateProvider', '$urlRouterProvider','$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider){
             $locationProvider.hashPrefix('');
