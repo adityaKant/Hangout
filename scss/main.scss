@@ -196,6 +196,11 @@ nav.header{
   md-card md-card-title md-card-title-media .md-media-lg{
     width: 224px;
   }
+  .pager{
+    a{
+      cursor: pointer;
+    }
+  }
 }
 .header-container{
   margin-top: 8px;
@@ -291,4 +296,5 @@ nav.header{
 md-progress-linear{
   top: 68px;
   z-index: 2;
+  position: fixed !important;
 }
