@@ -2,6 +2,8 @@ import {signup} from './app/services/signup.js';
 import {signin} from './app/services/signin.js';
 import {venueSearch} from './app/services/venueSearch.js';
 import {venueDetails} from './app/services/venue.js';
+import {userDetails} from './app/services/user.js';
+import {decode} from './app/services/decodeToken.js';
 
 
 var bodyParser = require('body-parser');
@@ -31,8 +33,13 @@ module.exports = function(app) {
     });
   });
   app.get('/venues/:id',function(req, res){
-    var body = req.body;
+    var body = req.params;
     venueDetails(body).then (function(obj){
+      res.send(obj);
+    });
+  });
+  app.get('/users',decode,function(req, res){
+    userDetails(req.userID).then (function(obj){
       res.send(obj);
     });
   });

@@ -3,7 +3,7 @@
     angular.module("VenuesList.controller",[])
         .controller('VenuesListController', venueListCtrl);
 
-    function venueListCtrl(api, $venueList, $stateParams, $progressBarFlag, $anchorScroll, $location) {
+    function venueListCtrl(api, $venueList, $stateParams, $progressBarFlag, $anchorScroll, $location, $constants) {
         var vm = this;
         vm.filter = {};
         vm.filter.categories = [];
@@ -15,6 +15,10 @@
         vm.nextPageDisabled = false;
         vm.prevPageDisabled = true;
         var progressBar = $progressBarFlag.get();
+        vm.ratingsOptions = $constants.ratings();
+        vm.usStates = $constants.stateList();
+        vm.radiusOptions = $constants.radius();
+        var location;
 
         var getVenuesList = function(payload){
             progressBar.flag = true;
@@ -34,14 +38,46 @@
         if($stateParams.search.length > 0 && vm.venues.keyword == null){
            getVenuesList({keyword: $stateParams.search});
         }
+
+        vm.getLocation = function(){
+            if(location == null) {
+                location = {};
+                navigator.geolocation.getCurrentPosition(function(position){
+                    location.latitude = position.coords.latitude;
+                    location.longitude = position.coords.longitude;
+                });
+            }
+        };
         
         vm.applyFilter = function () {
             filtersApplied = true;
+            if(vm.sendLocation){
+                vm.filter.latitude = location.latitude;
+                vm.filter.longitude = location.longitude;
+                vm.filter.radius = vm.selectedRadius;
+                if(vm.filter.city)
+                    vm.filter.city = null;
+                if(vm.filter.state)
+                    vm.filter.state = null;
+            }
+            else{
+                vm.filter.latitude = null;
+                vm.filter.longitude = null;
+            }
+
             var payload = {
                 keyword: $stateParams.search,
                 filter : vm.filter
             };
             getVenuesList(payload);
+        };
+
+        vm.resetFilter = function () {
+            if(filtersApplied){
+                vm.filter = {};
+                getVenuesList({keyword: $stateParams.search});
+                filtersApplied = false;
+            }
         };
 
         vm.nextPage = function () {

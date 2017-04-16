@@ -166,6 +166,14 @@ nav.header{
     md-input-container{
       width: 80%;
     }
+    md-card-actions{
+      button{
+        background-color: lightgray;
+      }
+    }
+    md-checkbox{
+      margin-bottom: 0;
+    }
   }
 
   .filter-btn{
