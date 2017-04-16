@@ -202,13 +202,29 @@ nav.header{
 }
 
 #venue-details {
-  margin-top: 105px;
+    margin-top: 105px;
+
+     .text {
+        font-size: 18px;
+        font-weight: bold;
+        margin: 2px;
+        font-family: calibri;
+        font-style: italic;
+    }
+
+    .image-slider {
+       border: 1px solid lightgray;
+    }
 
     .venue-info {
         margin-top: 20px;
-        margin: 2px;
         font-size: 18px;
         font-family: calibri;
+
+        .panel {
+            margin-left: 15px;
+            padding: 6px;
+        }
     }
 
     .btn {
@@ -222,10 +238,46 @@ nav.header{
 
     .review-count {
         margin: 10px 2px 2px 2px;
-        padding: 0px;
+        padding: 5px;
 
         .filter {
             width: 20%;
+            margin-left: 10px;
+            display: inline;
+        }
+    }
+
+    .panel {
+        border: 1px solid lightgray;
+    }
+
+    .reviews {
+        .review-container {
+            color: white;
+            background-color: #424242;
+        }
+    }
+
+    .suggestions {
+        border: 0px;
+
+        .suggestion-container {
+            margin: 2px;
+            border: 1px solid lightgray;
+            background-color: #424242;
+            color: white;
+
+        }
+
+        .suggestionsOne {
+            margin-top: 10px;
+            border: 1px solid lightgray;
+        }
+
+        .suggestionsTwo {
+            margin-top: 20px;
+            border: 1px solid lightgray;
+
         }
     }
 }

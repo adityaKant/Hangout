@@ -1,24 +1,29 @@
 <div class="container-fluid" id="venue-details">
     <div class="row image-slider">
-
+        Image Slider
     </div>
     <div class="row venue-info">
-        <span>Venue Name </span></br>
-        <span>Category </span></br>
-        <span>Address </span></br>
-        <span>Rating </span></br>
-        <md-button align="bottom" class="btn" ng-click="ctrl.openModal($event,'logIn')" class="md-raised md-accent">
-            Add to Favourites
-        </md-button>
+        <div class="panel">
+            <span>Venue Name </span></br>
+            <span>Category </span></br>
+            <span>Address </span></br>
+            <span>Rating </span></br>
+            <md-button align="bottom" class="btn" ng-click="ctrl.openModal($event,'logIn')" class="md-raised md-accent">
+                Add to Favourites
+            </md-button>
+        </div>
     </div>
 
     <div class="row">
         <div class="col-md-9">
-            <div class="row review-count">
-                 <span>
-                    Total {{ }} reviews for this place.
-                </span><br>
-                <div>
+            <div class="panel review-count">
+                <div class="text">
+                    <span>
+                        Total #{{ }} reviews for this place.
+                    </span><br>
+
+                </div>
+                <div class="text">
                     <span>
                         Filter By:
                     </span>
@@ -27,7 +32,7 @@
                 </div>
             </div>
             <div class="panel reviews">
-                <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
+                <md-card class="review-container">
                 <md-card-title>
                     <md-card-title-text>
                         <span class="md-headline">Review</span>
@@ -35,14 +40,34 @@
                     </md-card-title-text>
                 </md-card-title>
                 </md-card>
+
+                <md-card class="review-container">
+                    <md-card-title>
+                        <md-card-title-text>
+                            <span class="md-headline">Review</span>
+                            <span class="md-subhead">rating</span>
+                        </md-card-title-text>
+                    </md-card-title>
+                </md-card>
+
+                <md-card class="review-container">
+                    <md-card-title>
+                        <md-card-title-text>
+                            <span class="md-headline">Review</span>
+                            <span class="md-subhead">rating</span>
+                        </md-card-title-text>
+                    </md-card-title>
+                </md-card>
             </div>
         </div>
-        <div class="col-md-3">
-            <div class="row suggestions">
-                <span>
-                    You may also like
-                </span><br>
-                <div class="row">
+        <div class="col-md-3 panel suggestions">
+            <div class="row suggestionsOne">
+                <div class="row text">
+                    <span>
+                        You may also like
+                    </span><br>
+                </div>
+                <div class="row suggestion-container">
                     <div class="col-md-3">
                         Image
                     </div>
@@ -56,7 +81,21 @@
                     </div>
                 </div>
 
-                <div class="row">
+                <div class="row suggestion-container">
+                    <div class="col-md-3">
+                        Image
+                    </div>
+                    <div class="col-md-9">
+                        <span>
+                            Outlet Name
+                        </span><br>
+                        <span>
+                            Location
+                        </span>
+                    </div>
+                </div>
+
+                <div class="row suggestion-container">
                     <div class="col-md-3">
                         Image
                     </div>
@@ -70,12 +109,15 @@
                     </div>
                 </div>
             </div>
-            <div class="row more-suggestions">
-                <span>
-                    Places people like to go after this venue
-                </span><br>
+            <div class="row suggestionsTwo">
+                <div class="row text">
+                    <span>
+                        Places people like to go after this venue
+                    </span><br>
 
-                <div class="row">
+                </div>
+
+                <div class="row suggestion-container">
                     <div class="col-md-3">
                         Image
                     </div>
@@ -89,7 +131,21 @@
                     </div>
                 </div>
 
-                <div class="row">
+                <div class="row suggestion-container">
+                    <div class="col-md-3">
+                        Image
+                    </div>
+                    <div class="col-md-9">
+                        <span>
+                            Outlet Name
+                        </span><br>
+                        <span>
+                            Location
+                        </span>
+                    </div>
+                </div>
+
+                <div class="row suggestion-container">
                     <div class="col-md-3">
                         Image
                     </div>
