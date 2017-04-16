@@ -101,6 +101,83 @@ export function select(user)
   });
 }
 
+export function getDataForUserPage(userID)
+{
+  return oracledb.getConnection(
+    {
+      user          : "askant",
+      password      : "dbmsproject",
+      connectString : "oracle.cise.ufl.edu:1521/orcl"
+    })
+    .then(async function(connection)
+    {  let $res1 = await connection.execute(
+        //Suggested Venues
+        ' SELECT DISTINCT V.VENUE_NAME,   '+
+        '   V.VENUE_ID   '+
+        ' FROM VENUE V   '+
+        ' INNER JOIN VENUE_BELONGS_TO VBT   '+
+        ' ON V.VENUE_ID     = VBT.VENUE_ID   '+
+        ' WHERE VBT.CAT_ID IN   '+
+        '   ( SELECT DISTINCT VBT.CAT_ID   '+
+        '   FROM USER2 U   '+
+        '   INNER JOIN CHECK_IN CH   '+
+        '   ON U.USER_ID = CH.USER_ID   '+
+        '   INNER JOIN VENUE_BELONGS_TO VBT   '+
+        '   ON CH.VENUE_ID  = VBT.VENUE_ID   '+
+        '   WHERE U.USER_ID = :id   '+
+        '   )   '+
+        ' AND ROWNUM <= 5   ',
+        userID
+        );
+      let $res2 = await connection.execute(
+        //Followers
+       ' SELECT *   '+
+       ' FROM USER2   '+
+       ' WHERE USER_ID IN   '+
+       '   ( SELECT FOLLOWER_ID FROM USERGRAPH WHERE USER_ID = :id   '+
+       '   )   ',
+        userID
+        );
+      let $res3 = await connection.execute(
+        // Following
+        ' SELECT *   '+
+        ' FROM USER2   '+
+        ' WHERE USER_ID IN   '+
+        '   ( SELECT USER_ID FROM USERGRAPH WHERE FOLLOWER_ID = :id   '+
+        '   )   ',
+        userID
+        );
+      let $res4 = await connection.execute(
+        // Places visited by friends. 
+        ' SELECT CH.VENUE_ID,   '+
+        '   CH.USER_ID   '+
+        ' FROM USER2 U   '+
+        ' INNER JOIN USERGRAPH UG   '+
+        ' ON U.USER_ID = UG.FOLLOWER_ID   '+
+        ' INNER JOIN CHECK_IN CH   '+
+        ' ON UG.USER_ID   = CH.USER_ID   '+
+        ' WHERE U.USER_ID = :id   ',
+        userID
+        );
+      let $res5 = await connection.execute(
+        // Suggested people to follow
+        ' SELECT UG2.USER_ID   '+
+        ' FROM USERGRAPH UG1,   '+
+        '   USERGRAPH UG2   '+
+        ' WHERE UG1.USER_ID   = UG2.FOLLOWER_ID   '+
+        ' AND UG1.FOLLOWER_ID = :id   ',
+        userID
+        );
+        doRelease(connection);
+        return {suggestedVenues:$res1,followers:$res2,following:$res3,newsFeed:$res4,suggestedPeople:$res5};
+      })
+      .catch(function(err) {
+  console.error(err);
+  return connection.close();
+  });
+
+
+}
 
 function doRelease(connection)
 {
