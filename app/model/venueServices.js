@@ -34,7 +34,7 @@ export function search(object)
     }
 
     if(filters.latitude && filters.longitude && filters.radius){
-      condRadius = ' AND POWER( ( 69.1 * ( Longitude - - ' + filters.longitude + ' ) * cos( ' + filters.latitude + ' / 57.3 ) ) , 2 ) + POWER( ( 69.1 * ( Latitude - ' + filters.latitude + ' ) ) , 2 ) < ( ' + filters.radius + ' * ' + filters.radius + ' ) ';
+      condRadius = ' AND POWER( ( 69.1 * ( Longitude -  ' + filters.longitude + ' ) * cos( ' + filters.latitude + ' / 57.3 ) ) , 2 ) + POWER( ( 69.1 * ( Latitude - ' + filters.latitude + ' ) ) , 2 ) < ( ' + filters.radius + ' * ' + filters.radius + ' ) ';
     }
 
   }
