@@ -207,6 +207,7 @@ nav.header{
 }
 
 #venue-details {
+    background-color: #efeff4;
     margin-top: 105px;
 
      .text {
@@ -229,6 +230,8 @@ nav.header{
         .panel {
             margin-left: 15px;
             padding: 6px;
+            background-color: white;
+            color: black;
         }
     }
 
@@ -258,31 +261,26 @@ nav.header{
 
     .reviews {
         .review-container {
-            color: white;
-            background-color: #424242;
+            border: 1px solid lightgray;
+            margin: 0px;
         }
     }
 
     .suggestions {
         border: 0px;
+        background-color: #efeff4;
 
         .suggestion-container {
             margin: 2px;
-            border: 1px solid lightgray;
-            background-color: #424242;
-            color: white;
+            background-color: white;
+        }
 
+        .map {
+            background-color: white;
         }
 
         .suggestionsOne {
             margin-top: 10px;
-            border: 1px solid lightgray;
-        }
-
-        .suggestionsTwo {
-            margin-top: 20px;
-            border: 1px solid lightgray;
-
         }
     }
 }
