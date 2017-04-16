@@ -19,7 +19,8 @@
         'authInterceptor',
         'ngAnimate',
         'toastr',
-        'progressBarFlag.service'
+        'progressBarFlag.service',
+        'constants.service'
     ]);
 
 

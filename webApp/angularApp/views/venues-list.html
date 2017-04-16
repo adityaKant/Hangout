@@ -6,19 +6,34 @@
                     <md-card-content>
                         <md-content layout = "column">
                             <div flex="20">
-                                <md-input-container>
-                                    <label>City</label>
-                                    <input ng-model="VenuesListCtrl.filter.city" type="text">
-                                </md-input-container>
-                            </div>
-                            <div flex="20">
-                                <md-input-container>
-                                    <label>State</label>
-                                    <input ng-model="VenuesListCtrl.filter.state" type="text">
-                                </md-input-container>
-                            </div>
-                            <div flex="20">
                                 <div layout="row">
+                                    <div flex>
+                                        <md-input-container>
+                                            <label>City</label>
+                                            <input ng-disabled="VenuesListCtrl.sendLocation" ng-model="VenuesListCtrl.filter.city" type="text">
+                                        </md-input-container>
+                                    </div>
+                                    <div flex>
+                                        <md-input-container>
+                                            <label>State</label>
+                                            <md-select ng-model="VenuesListCtrl.filter.state">
+                                                <md-optgroup>
+                                                    <md-option ng-disabled="VenuesListCtrl.sendLocation" ng-value="state" ng-repeat="state in VenuesListCtrl.usStates">
+                                                        {{ state }}
+                                                    </md-option>
+                                                </md-optgroup>
+                                            </md-select>
+                                        </md-input-container>
+                                    </div>
+                                </div>
+                            </div>
+                            <div flex="20">
+                                <div layout="row" layout-align="center center">
+                                    <div flex>
+                                        <md-checkbox ng-model="VenuesListCtrl.sendLocation" ng-change="VenuesListCtrl.getLocation()" aria-label="Checkbox 1">
+                                            Within my Range
+                                        </md-checkbox>
+                                    </div>
                                     <div flex>
                                         <md-input-container>
                                             <label>Radius</label>
@@ -31,19 +46,22 @@
                                             </md-select>
                                         </md-input-container>
                                     </div>
-                                    <div flex>
-                                        <md-input-container>
-                                            <label>Rating</label>
-                                            <md-select ng-model="VenuesListCtrl.selectedRating">
-                                                <md-optgroup label = "ratings">
-                                                    <md-option ng-value="rating" ng-repeat="rating in VenuesListCtrl.ratingsOptions">
-                                                        {{ rating }}
-                                                    </md-option>
-                                                </md-optgroup>
-                                            </md-select>
-                                        </md-input-container>
-                                    </div>
                                 </div>
+                            </div>
+                            <div flex="20">
+                                <div flex="50">
+                                    <md-input-container>
+                                        <label>Rating</label>
+                                        <md-select ng-model="VenuesListCtrl.filter.rating">
+                                            <md-optgroup>
+                                                <md-option ng-value="rating.value" ng-repeat="rating in VenuesListCtrl.ratingsOptions">
+                                                    {{ rating.option }}
+                                                </md-option>
+                                            </md-optgroup>
+                                        </md-select>
+                                    </md-input-container>
+                                </div>
+
                             </div>
                             <div flex="40" class="filter-categories-cntr">
                                 <form name="categories">
@@ -63,7 +81,7 @@
 
                     </md-card-content>
                     <md-card-actions layout="row" layout-align="end end">
-                        <md-button ng-click="VenuesListCtrl.resetFilter()" class="green-txt-btn">Clear</md-button>
+                        <md-button ng-click="VenuesListCtrl.resetFilter()" class="green-txt-btn">Reset</md-button>
                         <md-button ng-click="VenuesListCtrl.applyFilter()" class="outline-btn-green md-button md-ink-ripple">Filter</md-button>
                     </md-card-actions>
                 </md-card>

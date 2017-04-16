@@ -3,7 +3,7 @@
     angular.module("VenuesList.controller",[])
         .controller('VenuesListController', venueListCtrl);
 
-    function venueListCtrl(api, $venueList, $stateParams, $progressBarFlag, $anchorScroll, $location) {
+    function venueListCtrl(api, $venueList, $stateParams, $progressBarFlag, $anchorScroll, $location, $constants) {
         var vm = this;
         vm.filter = {};
         vm.filter.categories = [];
@@ -15,6 +15,8 @@
         vm.nextPageDisabled = false;
         vm.prevPageDisabled = true;
         var progressBar = $progressBarFlag.get();
+        vm.ratingsOptions = $constants.ratings();
+        vm.usStates = $constants.stateList();
 
         var getVenuesList = function(payload){
             progressBar.flag = true;
@@ -34,6 +36,10 @@
         if($stateParams.search.length > 0 && vm.venues.keyword == null){
            getVenuesList({keyword: $stateParams.search});
         }
+
+        vm.getLocation = function(){
+            debugger
+        };
         
         vm.applyFilter = function () {
             filtersApplied = true;
@@ -42,6 +48,14 @@
                 filter : vm.filter
             };
             getVenuesList(payload);
+        };
+
+        vm.resetFilter = function () {
+            if(filtersApplied){
+                vm.filter = {};
+                getVenuesList({keyword: $stateParams.search});
+                filtersApplied = false;
+            }
         };
 
         vm.nextPage = function () {
