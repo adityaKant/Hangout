@@ -20,9 +20,16 @@
                 "IA","ID", "IL","IN","KS","KY","LA","MA","MD","ME","MH","MI","MN","MO","MS","MT",
                 "NC","ND","NE","NH","NJ","NM","NV","NY", "OH","OK","OR","PA","PR","PW","RI","SC",
                 "SD","TN","TX","UT","VA","VI","VT","WA","WI","WV","WY"];
+            var radius = [
+                {option: 'less than 10 Miles', value: 10},
+                {option: 'less than 20 Miles', value: 20},
+                {option: 'less than 30 Miles', value: 30},
+                {option: 'less than 40 Miles', value: 40},
+            ];
             return{
                 ratings: function(){return ratings;},
-                stateList: function () {return stateList}
+                stateList: function () {return stateList;},
+                radius: function () {return radius;}
             };
         })
 })();

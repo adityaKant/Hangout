@@ -38,9 +38,9 @@
                                         <md-input-container>
                                             <label>Radius</label>
                                             <md-select ng-model="VenuesListCtrl.selectedRadius">
-                                                <md-optgroup label = "Radius">
-                                                    <md-option ng-value="radius" ng-repeat="radius in VenuesListCtrl.radiusOptions">
-                                                        {{ radius }}
+                                                <md-optgroup>
+                                                    <md-option ng-value="radius.value" ng-repeat="radius in VenuesListCtrl.radiusOptions">
+                                                        {{ radius.option }}
                                                     </md-option>
                                                 </md-optgroup>
                                             </md-select>

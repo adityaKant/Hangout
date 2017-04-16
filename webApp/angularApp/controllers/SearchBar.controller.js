@@ -8,9 +8,6 @@
         var progressBar = $progressBarFlag.get();
 
         vm.getVenues = function(isValid) {
-            navigator.geolocation.getCurrentPosition(function(position){
-
-            });
             if(isValid){
                 progressBar.flag = true;
                 var payload = {
