@@ -304,3 +304,26 @@ md-progress-linear{
   z-index: 2;
   position: fixed !important;
 }
+
+#userProfile {
+    margin-top: 105px;
+
+    .userInfo {
+        margin: 0px !important;
+    }
+
+    md-card-actions {
+        margin-bottom: 0px !important;
+
+        .md-button {
+                border: 1px solid lightgray;
+                background-color: #d6e2e4;
+                border-top-left-radius: 8px;
+                border-top-right-radius: 8px;
+                margin: 0px !important;
+
+            }
+    }
+
+
+}
