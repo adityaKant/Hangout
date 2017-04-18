@@ -24,8 +24,8 @@
     "angular-resource": "^1.6.3",
     "ngstorage": "^0.3.11",
     "angular-toastr": "^2.1.1",
-    "nvd3": "^1.8.5",
-    "angular-slick": "^0.2.1"
+    "angular-slick": "^0.2.1",
+    "angular-nvd3": "^1.0.9"
   },
   "resolutions": {
     "angular": "^1.6.3",
