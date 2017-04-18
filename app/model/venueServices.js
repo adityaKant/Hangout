@@ -51,7 +51,7 @@ export function search(object)
   }
   condPage = " r > " + start + " and r <= " +  end;
 
-  let preparedQuery = 'select VENUE_ID, VENUE_NAME, PHONE, CITY, STATE, RATING from (select ROWNUM r, Venue.* ' +
+  let preparedQuery = 'select VENUE_ID, VENUE_NAME, PHONE, CITY, STATE, RATING, CHECK_IN_COUNT, REVIEW_COUNT from (select ROWNUM r, Venue.* ' +
                       'from venue where venue_name like \''+ name + '\'' +
                       condCity + condRating + condState + condRadius +  ') where ' + condPage;
 

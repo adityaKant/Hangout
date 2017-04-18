@@ -127,7 +127,7 @@ export function getDataForUserPage(userID)
         '   WHERE U.USER_ID = :id   '+
         '   )   '+
         ' AND ROWNUM <= 5   ',
-        userID
+        [userID]
         );
       let $res2 = await connection.execute(
         //Followers
@@ -136,7 +136,7 @@ export function getDataForUserPage(userID)
        ' WHERE USER_ID IN   '+
        '   ( SELECT FOLLOWER_ID FROM USERGRAPH WHERE USER_ID = :id   '+
        '   )   ',
-        userID
+       [userID]
         );
       let $res3 = await connection.execute(
         // Following
@@ -145,10 +145,10 @@ export function getDataForUserPage(userID)
         ' WHERE USER_ID IN   '+
         '   ( SELECT USER_ID FROM USERGRAPH WHERE FOLLOWER_ID = :id   '+
         '   )   ',
-        userID
+        [userID]
         );
       let $res4 = await connection.execute(
-        // Places visited by friends. 
+        // Places visited by friends.
         ' SELECT CH.VENUE_ID,   '+
         '   CH.USER_ID   '+
         ' FROM USER2 U   '+
@@ -157,7 +157,7 @@ export function getDataForUserPage(userID)
         ' INNER JOIN CHECK_IN CH   '+
         ' ON UG.USER_ID   = CH.USER_ID   '+
         ' WHERE U.USER_ID = :id   ',
-        userID
+        [userID]
         );
       let $res5 = await connection.execute(
         // Suggested people to follow
@@ -166,10 +166,10 @@ export function getDataForUserPage(userID)
         '   USERGRAPH UG2   '+
         ' WHERE UG1.USER_ID   = UG2.FOLLOWER_ID   '+
         ' AND UG1.FOLLOWER_ID = :id   ',
-        userID
+        [userID]
         );
         doRelease(connection);
-        return {suggestedVenues:$res1,followers:$res2,following:$res3,newsFeed:$res4,suggestedPeople:$res5};
+        return {suggestedVenues : $res1.rows, followers : $res2.rows, following : $res3.rows, newsFeed : $res4.rows, suggestedPeople : $res5.rows};
       })
       .catch(function(err) {
   console.error(err);

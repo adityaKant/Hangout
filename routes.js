@@ -19,27 +19,40 @@ module.exports = function(app) {
       }
     });
   });
+  
   app.post('/sign-in',function(req, res){
     var body = req.body;
     signin(req.body.user).then (function(obj){
       if(obj.found == 'false')
         res.send('Invalid password or username',400)
-      res.send(obj);
+      else {
+        res.send(obj);
+      }
     });
   });
+
   app.get('/venues',function(req, res){
     venueSearch(req).then (function(obj){
       res.send(obj);
     });
   });
+
   app.get('/venues/:id',function(req, res){
     var body = req.params;
     venueDetails(body).then (function(obj){
       res.send(obj);
     });
   });
+
+  app.get('/venues/:id/review',function(req, res){
+    var body = req.params;
+    venueDetails(body).then (function(obj){
+      res.send(obj);
+    });
+  });
   app.get('/users',decode,function(req, res){
-    userDetails(req.userID).then (function(obj){
+    let id = req.userID;
+    userDetails(id).then (function(obj){
       res.send(obj);
     });
   });

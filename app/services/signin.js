@@ -21,6 +21,7 @@ var bodyParser = require('body-parser');
         return select(obj).then(function(result){
           console.log(result.rows);
           var token = getToken(obj);
+          console.log(token);
           return ({found : 'true', user : result.rows[0], accessToken : token});
             //resolve(JSON.parse(result.rows[0][0));})
         });
