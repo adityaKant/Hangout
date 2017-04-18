@@ -24,9 +24,11 @@
     "angular-resource": "^1.6.3",
     "ngstorage": "^0.3.11",
     "angular-toastr": "^2.1.1",
-    "nvd3": "^1.8.5"
+    "nvd3": "^1.8.5",
+    "angular-slick": "^0.2.1"
   },
   "resolutions": {
-    "angular": "^1.6.3"
+    "angular": "^1.6.3",
+    "slick-carousel": "~1.6.0"
   }
 }
