@@ -8,7 +8,7 @@
 
                 Session: $resource('/sign-in',{},{}),
 
-                Venues: $resource('/venues', {}, {})
+                Venues: $resource('/venues/:id', {id: '@id'}, {})
             };
         }])
 })();

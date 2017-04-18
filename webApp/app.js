@@ -5,7 +5,6 @@
         'hangout.routes',
         'hangout.headerController',
         'SearchBar.controller',
-        'Venue.controller',
         'ngMaterial',
         'SearchBar.directive',
         'signInModal.service',

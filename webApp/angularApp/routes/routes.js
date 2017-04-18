@@ -3,7 +3,9 @@
 
     angular.module("hangout.routes",[
         'ui.router',
-        'VenuesList.controller'
+        'VenuesList.controller',
+        'Venue.controller',
+        'User.controller'
     ])
         .config(['$stateProvider', '$urlRouterProvider','$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider){
             $locationProvider.hashPrefix('');
@@ -28,6 +30,12 @@
                     templateUrl: "angularApp/views/venue-details.html",
                     controller: 'VenueController',
                     controllerAs: 'venueCtrl'
+                })
+                 .state('UserProfile',{
+                    url: '/UserProfile',
+                    templateUrl: "angularApp/views/userProfile.html",
+                    controller: 'UserController',
+                    controllerAs: 'userCtrl'
                 })
         }]);
 })();
