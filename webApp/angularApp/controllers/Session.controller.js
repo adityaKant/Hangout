@@ -14,6 +14,10 @@
             api.Session.save(payload,function (response) {
                 $currentUser.setToken(response.accessToken);
                 for(var k in response.user) currentUser[k]=response.user[k];
+                api.Me.get({},function (response){
+                    currentUser.likedPlaces = response.likes;
+                },function (errResponse){
+                });
                 vm.closeModal();
             },function (errResponse) {
                 toastr.error(errResponse.data,'Authentication error');
