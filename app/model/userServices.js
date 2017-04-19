@@ -131,7 +131,7 @@ export function getDataForUserPage(userID)
         );
       let $res2 = await connection.execute(
         //Followers
-       ' SELECT *   '+
+       ' SELECT USER_ID, FNAME, LNAME   '+
        ' FROM USER2   '+
        ' WHERE USER_ID IN   '+
        '   ( SELECT FOLLOWER_ID FROM USERGRAPH WHERE USER_ID = :id   '+
@@ -140,7 +140,7 @@ export function getDataForUserPage(userID)
         );
       let $res3 = await connection.execute(
         // Following
-        ' SELECT *   '+
+        ' SELECT USER_ID, FNAME, LNAME   '+
         ' FROM USER2   '+
         ' WHERE USER_ID IN   '+
         '   ( SELECT USER_ID FROM USERGRAPH WHERE FOLLOWER_ID = :id   '+
@@ -161,15 +161,22 @@ export function getDataForUserPage(userID)
         );
       let $res5 = await connection.execute(
         // Suggested people to follow
-        ' SELECT UG2.USER_ID   '+
+        ' SELECT UG2.USER_ID, U.FNAME, U.LNAME   '+
         ' FROM USERGRAPH UG1,   '+
-        '   USERGRAPH UG2   '+
+        '   USERGRAPH UG2, USER2  U '+
         ' WHERE UG1.USER_ID   = UG2.FOLLOWER_ID   '+
-        ' AND UG1.FOLLOWER_ID = :id   ',
+        ' AND UG1.FOLLOWER_ID = :id AND U.USER_ID = UG2.FOLLOWER_ID  ',
         [userID]
         );
+      let $res = await connection.execute(
+          // The statement to execute
+          "select USER_ID, FNAME, LNAME " +
+          "from user2 " +
+          "WHERE USER_ID = :id",
+          [userID]
+      )
         doRelease(connection);
-        return {suggestedVenues : $res1.rows, followers : $res2.rows, following : $res3.rows, newsFeed : $res4.rows, suggestedPeople : $res5.rows};
+        return {user : $res.rows, suggestedVenues : $res1.rows, followers : $res2.rows, following : $res3.rows, newsFeed : $res4.rows, suggestedPeople : $res5.rows};
       })
       .catch(function(err) {
   console.error(err);
