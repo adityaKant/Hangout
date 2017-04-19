@@ -7,7 +7,7 @@ export function userDetails(userID)
   return getDataForUserPage(userID).then(function(result){
     return result;
 
-  }).catch(function(){
-  	console.log("Error in service method");
+  }).catch(function(err){
+  	console.log("Error in service method" + err);
   });
 }
