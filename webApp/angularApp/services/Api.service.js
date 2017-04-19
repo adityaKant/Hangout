@@ -15,8 +15,12 @@
                     }
                 }),
 
-                Me: $resource('/me',{},{})
-
+                Me: $resource('/me',{},{
+                    myReviews: {
+                        method:'GET',
+                        url: '/me/reviews'
+                    }
+                })
             };
         }])
 })();
