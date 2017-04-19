@@ -24,9 +24,9 @@ module.exports = function(app) {
     req.venueID = req.params.id;
     likeVenue(req).then (function(obj){
       if(obj == undefined)
-        res.send('Bad Request', 400);
+        res.status(400).send({status : 'Bad Request'});
       else {
-        res.send('Updated', 200);
+        let respose = {status : "Accomplished"};
       }
     });
   });
