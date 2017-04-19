@@ -16,16 +16,16 @@
             <div class="tabs-wrapper">
                 <ul class="nav nav-tabs tabs-3 red" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" data-toggle="tab" href="#newsfeed" role="tab">Newsfeed</a>
+                        <a class="nav-link active" data-toggle="tab" data-target="#newsfeed" role="tab">Newsfeed</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " data-toggle="tab" href="#followers" role="tab">Followers</a>
+                        <a class="nav-link " data-toggle="tab" data-target="#followers" role="tab">Followers</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " data-toggle="tab" href="#following" role="tab">Following</a>
+                        <a class="nav-link " data-toggle="tab" data-target="#following" role="tab">Following</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " data-toggle="tab" href="#reviews" role="tab">My Reviews</a>
+                        <a class="nav-link " data-toggle="tab" data-target="#reviews" role="tab">My Reviews</a>
                     </li>
                 </ul>
             </div>
@@ -144,8 +144,16 @@
         <!--/.Panel 3-->
         <!--Panel 4-->
         <div class="tab-pane fade" id="reviews" role="tabpanel">
-            <br>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil odit magnam minima, soluta doloribus reiciendis molestiae placeat unde eos molestias. Quisquam aperiam, pariatur. Tempora, placeat ratione porro voluptate odit minima.</p>
+            <div class="col-md-8 friend-checkins">
+                <md-card ng-repeat="review in userCtrl.myReviews">
+                    <md-card-title>
+                        <md-card-title-text>
+                            <span class="md-headline">{{review.VENUE_NAME }}</span>
+                            <span class="md-subhead">{{review.REVIEW_TEXT}}</span>
+                        </md-card-title-text>
+                    </md-card-title>
+                </md-card>
+            </div>
         </div>
         <!--/.Panel 4-->
     </div>
