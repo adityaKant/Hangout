@@ -1,13 +1,23 @@
-import {getreviewsVenue} from '../model/reviewServices';
+import {getreviewsVenue, getreviewsUser} from '../model/reviewServices';
 
 var bodyParser = require('body-parser');
 
-export function getreview(userID)
+export function getVenueReview(venueID)
 {
-  return getDataForUserPage(userID).then(function(result){
+  return getreviewsVenue(venueID).then(function(result){
     return result;
 
-  }).catch(function(){
-  	console.log("Error in service method");
+  }).catch(function(err){
+  	console.log(err);
+  });
+}
+
+export function getUserReview(userID)
+{
+  return getreviewsUser(userID).then(function(result){
+    return result;
+
+  }).catch(function(err){
+  	console.log(err);
   });
 }
