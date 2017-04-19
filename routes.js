@@ -73,7 +73,7 @@ module.exports = function(app) {
     });
   });
 
-  app.get('/user/review', decode, function(req, res){
+  app.get('/me/reviews', decode, function(req, res){
     getUserReview(req.userID).then (function(obj){
     res.send(obj);
     });
