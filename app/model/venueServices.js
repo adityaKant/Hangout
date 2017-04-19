@@ -7,7 +7,7 @@ oracledb.outFormat = oracledb.OBJECT;
 export function search(object)
 {
 
-  let name, condCity = '', condState = '', condRating = '', condRadius = '', condPage;
+  let name, condCity = '', condState = '', condRating = '', condRadius = '', condPage, condSort='';
 
   if(object.keyword){
     name =  '%' + object.keyword +  '%';
@@ -37,6 +37,11 @@ export function search(object)
       condRadius = ' AND POWER( ( 69.1 * ( Longitude -  ' + filters.longitude + ' ) * cos( ' + filters.latitude + ' / 57.3 ) ) , 2 ) + POWER( ( 69.1 * ( Latitude - ' + filters.latitude + ' ) ) , 2 ) < ( ' + filters.radius + ' * ' + filters.radius + ' ) ';
     }
 
+    if(filters.sort)
+    {
+      condSort = ' ORDER BY RATING DESC '
+    }
+
   }
 
   let start, end;
@@ -53,7 +58,7 @@ export function search(object)
 
   let preparedQuery = 'select VENUE_ID, VENUE_NAME, PHONE, CITY, STATE, RATING, CHECK_IN_COUNT, REVIEW_COUNT from (select ROWNUM r, Venue.* ' +
                       'from venue where venue_name like \''+ name + '\'' +
-                      condCity + condRating + condState + condRadius +  ') where ' + condPage;
+                      condCity + condRating + condState + condRadius + condSort + ') where ' + condPage;
 
   console.log(preparedQuery);
 

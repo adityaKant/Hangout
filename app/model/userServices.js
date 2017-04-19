@@ -179,7 +179,7 @@ export function getDataForUserPage(userID)
       let $res4 = await connection.execute(
         // Places visited by friends.
         ' SELECT CH.VENUE_ID, V.VENUE_NAME,  '+
-        '   CH.USER_ID, U2.FNAME, U2.LNAME   '+
+        '   CH.USER_ID, U2.FNAME, U2.LNAME, CH.TIME   '+
         ' FROM USER2 U   '+
         ' INNER JOIN USERGRAPH UG   '+
         ' ON U.USER_ID = UG.FOLLOWER_ID   '+
@@ -189,7 +189,7 @@ export function getDataForUserPage(userID)
         ' ON CH.VENUE_ID = V.VENUE_ID '+
         ' INNER JOIN USER2 U2  '+
         ' ON CH.USER_ID   = U2.USER_ID '+
-        ' WHERE U.USER_ID = :id   ',
+        ' WHERE U.USER_ID = :id  ORDER BY CH.TIME DESC ',
         [userID]
         );
 
