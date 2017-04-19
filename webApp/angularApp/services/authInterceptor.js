@@ -7,7 +7,7 @@
 
                     config.headers = config.headers || {};
                     if ($currentUser.getToken()) {
-                        config.headers.Authorization = "Token token=" + $currentUser.getToken();
+                        config.headers.token = $currentUser.getToken();
                     }
                     return config;
                 }

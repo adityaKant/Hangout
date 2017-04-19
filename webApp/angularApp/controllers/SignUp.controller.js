@@ -15,7 +15,7 @@
                 var payLoad = {
                     user : vm.formData
                 };
-                api.Me.save(payLoad,function (response) {
+                api.SignUp.save(payLoad,function (response) {
                     api.Session.save(payLoad,function(resp){
                         $currentUser.setToken(response.accessToken);
                         for(var k in resp.user) currentUser[k]=resp.user[k];

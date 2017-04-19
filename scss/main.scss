@@ -231,17 +231,46 @@ nav.header{
     }
 
     .venue-info {
-        margin-top: 20px;
-        font-size: 18px;
-        font-family: calibri;
-
-        .panel {
-            margin-left: 15px;
-            padding: 6px;
-            background-color: white;
-            color: black;
+      margin-top: 20px;
+      font-size: 18px;
+      font-family: calibri;
+      .panel {
+        margin-left: 15px;
+        padding: 6px;
+        background-color: white;
+        color: black;
+        background-image: url("../images/watermarked_cover.png");
+        height: 315px;
+        span{
+          color: white;
         }
+      }
+
+      .venue-data-container{
+        margin: 166px 27px 0 32px;
+      }
+      .venue-data{
+        font-size: larger;
+        float: left;
+      }
+      md-chips md-chip{
+        background: #5cb85c !important;
+      }
+      .like-btn{
+        margin-top: 60px;
+      }
+
     }
+  .review-container{
+    .reviews{
+      .badge-container{
+        span.badge{
+          background-color: yellowgreen !important;
+          width: 3%;
+        }
+      }
+    }
+  }
 
     .btn {
         background-color: #5bc0de;
@@ -307,23 +336,37 @@ md-progress-linear{
 
 #userProfile {
     margin-top: 105px;
-
     .userInfo {
         margin: 0px !important;
+
+        md-card {
+            height: 150px !important;
+        }
     }
+    .tab-content {
+        margin-top: 20px !important;
+        .friend-checkins {
+            max-height: 600px;
+            overflow-y: scroll;
+        }
+        .venue-suggestions {
+            max-height: 400px;
+            overflow-y: scroll;
+            md-card {
+                md-card-title {
+                    padding: 0px;
+                    height: 80px;
 
-    md-card-actions {
-        margin-bottom: 0px !important;
+                    md-card-title-media {
+                        margin: 0px !important;
+                    }
 
-        .md-button {
-                border: 1px solid lightgray;
-                background-color: #d6e2e4;
-                border-top-left-radius: 8px;
-                border-top-right-radius: 8px;
-                margin: 0px !important;
-
+                    md-card-title-text {
+                        margin-left: 10px !important;
+                    }
+                }
             }
+        }
     }
-
 
 }

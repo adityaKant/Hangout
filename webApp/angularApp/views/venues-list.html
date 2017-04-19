@@ -88,6 +88,9 @@
             </div>
         </div>
         <div class="col-md-8">
+            <div class="panel map" ng-if="VenuesListCtrl.venues.venues">
+                <nvd3 options='VenuesListCtrl.graphOptions' data='VenuesListCtrl.graphData'></nvd3>
+            </div>
             <div class="panel panel-default">
                 <!-- Default panel contents -->
                 <div class="panel-heading">Search results for : {{VenuesListCtrl.searchResultsFor}}</div>
@@ -106,7 +109,7 @@
                     </ul>
                 </nav>
                 <div class="panel-body scrollable-list" >
-                    <md-content ng-if = "!VenueListCtrl.venues.venues">
+                    <md-content ng-if = "VenuesListCtrl.venues.venues">
                         <md-card ui-sref="getVenue({id: venue.VENUE_ID})" ng-repeat = "venue in VenuesListCtrl.venues.venues">
                             <md-card-title>
                                 <md-card-title-text>
