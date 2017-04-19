@@ -10,18 +10,24 @@
                     <span class="md-subhead">Info</span>
                 </md-card-title-text>
             </md-card-title>
-            <md-card-actions layout="row" layout-align="end center">
-                <md-button>Tips</md-button>
-                <md-button>Followers</md-button>
-                <md-button>Following</md-button>
-                <md-button>Liked Places</md-button>
-            </md-card-actions>
+            <div ng-cloak>
+                <md-content>
+                    <md-tabs md-dynamic-height md-border-bottom>
+                        <md-tab label="News Feed">
+                            <md-content class="md-padding">
+                            </md-content>
+                        </md-tab>
+                        <md-tab label="Followers">
+                            <md-content class="md-padding">
+                            </md-content>
+                        </md-tab>
+                        <md-tab label="Following">
+                            <md-content class="md-padding">
+                            </md-content>
+                        </md-tab>
+                    </md-tabs>
+                </md-content>
+            </div>
         </md-card>
-    </div>
-    <div class="row" id="recent-checkins">
-
-    </div>
-    <div class="row" id="top-cities">
-
     </div>
 </div>
