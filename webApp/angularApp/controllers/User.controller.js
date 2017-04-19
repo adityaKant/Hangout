@@ -6,6 +6,7 @@
         var vm = this;
         api.Me.get  ({},function (response) {
             vm.user = response
+            console.log(response)
 
         },function (errResponse) {
 
