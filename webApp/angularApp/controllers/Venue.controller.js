@@ -51,7 +51,7 @@
                             VENUE_ID : $stateParams.id
                         });
                 }, function (errResponse) {
-                    debugger
+
                 })
             }
         }

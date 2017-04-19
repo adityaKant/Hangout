@@ -302,27 +302,38 @@ nav.header{
         .review-container {
             border: 1px solid lightgray;
             margin: 0px;
+
+            .side-container {
+                max-height: 400px;
+                md-card {
+                    box-shadow: 0px 0px 0px 0px !important;
+                    md-card-title {
+                        padding: 0px;
+                        height: 80px;
+
+                        md-card-title-media {
+                            margin: 0px !important;
+
+                            img {
+                                border-radius: 30% !important;
+                            }
+                        }
+
+                        md-card-title-text {
+                            margin-left: 10px !important;
+
+                            .md-headline {
+                                font-size: 20px !important;
+                            }
+
+                        }
+                    }
+                }
+            }
         }
     }
 
-    .suggestions {
-        border: 0px;
-        background-color: #efeff4;
 
-        .suggestion-container {
-            margin: 2px;
-            background-color: white;
-        }
-
-        .map {
-          background-color: white;
-          height: 20em;
-        }
-
-        .suggestionsOne {
-            margin-top: 10px;
-        }
-    }
 }
 .inactiveLink {
   pointer-events: none;
