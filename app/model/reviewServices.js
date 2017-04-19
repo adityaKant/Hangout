@@ -24,8 +24,36 @@ export function getreviewsVenue(venueID)
         // The "bind value" 180 for the "bind variable" :id
         [venueID]
       )
+
+      const $res1 = await connection.execute(
+        // The statement to execute
+        "SELECT  CASE  " +
+        " WHEN RATING <= 3 " +
+        "    THEN 'NEGATIVE' " +
+        "    WHEN RATING > 3 " +
+        "    AND RATING <= 6 " +
+        "    THEN 'NEUTRAL' " +
+        "    ELSE 'POSITIVE' " +
+        "  END      AS REVIEW_TYPE, " +
+        "  COUNT(*) AS COUNT " +
+        " FROM REVIEW " +
+        " WHERE VENUE_ID = :id " +
+        " GROUP BY " +
+        "  CASE " +
+        "    WHEN RATING <= 3 " +
+        "    THEN 'NEGATIVE' " +
+        "    WHEN RATING > 3 " +
+        "    AND RATING <= 6 " +
+        "    THEN 'NEUTRAL' " +
+        "    ELSE 'POSITIVE' " +
+        "  END",
+
+        // The "bind value" 180 for the "bind variable" :id
+        [venueID]
+      )
+
       doRelease(connection);
-      return $res.rows;
+      return {reviews : $res.rows, rating : $res1.rows};
   });
 }
 

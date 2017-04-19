@@ -110,10 +110,11 @@ export function getDataForUserPage(userID)
       connectString : "oracle.cise.ufl.edu:1521/orcl"
     })
     .then(async function(connection)
-    {  let $res1 = await connection.execute(
+    {
+      let $res1 = await connection.execute(
         //Suggested Venues
         ' SELECT DISTINCT V.VENUE_NAME,   '+
-        '   V.VENUE_ID   '+
+        '   V.VENUE_ID, V.RATING   '+
         ' FROM VENUE V   '+
         ' INNER JOIN VENUE_BELONGS_TO VBT   '+
         ' ON V.VENUE_ID     = VBT.VENUE_ID   '+
@@ -129,6 +130,7 @@ export function getDataForUserPage(userID)
         ' AND ROWNUM <= 5   AND V.VENUE_ID NOT IN ( SELECT VENUE_ID FROM LIKES WHERE USER_ID = :id1)',
         {id : userID, id1 : userID}
         );
+
       let $res2 = await connection.execute(
         //Followers
        ' SELECT USER_ID, FNAME, LNAME   '+
@@ -138,6 +140,7 @@ export function getDataForUserPage(userID)
        '   )   ',
        [userID]
         );
+
       let $res3 = await connection.execute(
         // Following
         ' SELECT USER_ID, FNAME, LNAME   '+
@@ -147,18 +150,24 @@ export function getDataForUserPage(userID)
         '   )   ',
         [userID]
         );
+
       let $res4 = await connection.execute(
         // Places visited by friends.
-        ' SELECT CH.VENUE_ID,   '+
-        '   CH.USER_ID   '+
+        ' SELECT CH.VENUE_ID, V.VENUE_NAME,  '+
+        '   CH.USER_ID, U2.FNAME, U2.LNAME   '+
         ' FROM USER2 U   '+
         ' INNER JOIN USERGRAPH UG   '+
         ' ON U.USER_ID = UG.FOLLOWER_ID   '+
         ' INNER JOIN CHECK_IN CH   '+
         ' ON UG.USER_ID   = CH.USER_ID   '+
+        ' INNER JOIN VENUE V  '+
+        ' ON CH.VENUE_ID = V.VENUE_ID '+
+        ' INNER JOIN USER2 U2  '+
+        ' ON CH.USER_ID   = U2.USER_ID '+
         ' WHERE U.USER_ID = :id   ',
         [userID]
         );
+
       let $res5 = await connection.execute(
         // Suggested people to follow
         ' SELECT UG2.USER_ID, U.FNAME, U.LNAME   '+
@@ -168,6 +177,7 @@ export function getDataForUserPage(userID)
         ' AND UG1.FOLLOWER_ID = :id AND U.USER_ID = UG2.FOLLOWER_ID  ',
         [userID]
         );
+
       let $res = await connection.execute(
           // The statement to execute
           "select USER_ID, FNAME, LNAME " +
@@ -175,8 +185,24 @@ export function getDataForUserPage(userID)
           "WHERE USER_ID = :id",
           [userID]
       )
+
+      let  reviewCount= await connection.execute(
+          // The statement to execute
+          "select count(*) a " +
+          "from user2 u INNER JOIN REVIEW r ON u.USER_ID = r.USER_ID " +
+          "WHERE u.USER_ID = :id",
+          [userID]
+      );
+
+      let  checkinCount= await connection.execute(
+          // The statement to execute
+          "select count(*) a " +
+          "from user2 u INNER JOIN CHECK_IN ch ON u.USER_ID = ch.USER_ID " +
+          "WHERE u.USER_ID = :id",
+          [userID]
+      );
         doRelease(connection);
-        return {user : $res.rows, suggestedVenues : $res1.rows, followers : $res2.rows, following : $res3.rows, newsFeed : $res4.rows, suggestedPeople : $res5.rows};
+        return {user : $res.rows, userStats:{reviews : reviewCount.rows[0].A, check_ins : checkinCount.rows[0].A}, suggestedVenues : $res1.rows, followers : $res2.rows, following : $res3.rows, newsFeed : $res4.rows, suggestedPeople : $res5.rows};
       })
       .catch(function(err) {
   console.error(err);
