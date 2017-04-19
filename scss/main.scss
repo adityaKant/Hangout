@@ -217,7 +217,13 @@ nav.header{
 #venue-details {
     background-color: #efeff4;
     margin-top: 105px;
+    .md-headline {
+        font-variant: small-caps;
+    }
 
+    .md-subhead {
+        font-style : italic !important;
+    }
      .text {
         font-size: 18px;
         font-weight: bold;
@@ -234,6 +240,7 @@ nav.header{
       margin-top: 20px;
       font-size: 18px;
       font-family: calibri;
+
       .panel {
         margin-left: 15px;
         padding: 6px;
@@ -241,16 +248,19 @@ nav.header{
         color: black;
         background-image: url("../images/watermarked_cover.png");
         height: 315px;
+
         span{
-          color: white;
-        }
+            color: white;
+            font-variant: small-caps;
+            font-size: 25px !important;
+            font-weight: bold;        }
       }
 
       .venue-data-container{
         margin: 166px 27px 0 32px;
       }
       .venue-data{
-        font-size: larger;
+
         float: left;
       }
       md-chips md-chip{
@@ -261,16 +271,6 @@ nav.header{
       }
 
     }
-  .review-container{
-    .reviews{
-      .badge-container{
-        span.badge{
-          background-color: yellowgreen !important;
-          width: 3%;
-        }
-      }
-    }
-  }
 
     .btn {
         background-color: #5bc0de;
@@ -284,6 +284,8 @@ nav.header{
     .review-count {
         margin: 10px 2px 2px 2px;
         padding: 5px;
+        font-variant: small-caps !important;
+        font-size: 20px !important;
 
         .filter {
             width: 20%;
@@ -336,6 +338,9 @@ md-progress-linear{
 }
 
 #userProfile {
+    .md-headline {
+        font-variant: small-caps;
+    }
     margin-top: 105px;
     .userInfo {
         margin: 0px !important;
@@ -345,6 +350,14 @@ md-progress-linear{
 
             md-card-title-text {
                 margin-left: 20px;
+
+                 .md-headline {
+                        font-variant: small-caps;
+                    }
+
+                .md-subhead {
+                    font-style: italic !important;
+                }
             }
         }
     }
@@ -353,20 +366,20 @@ md-progress-linear{
         .friend-checkins {
             max-height: 400px;
 
-                        md-card {
-                            md-card-title {
-                                padding: 0px;
-                                height: 80px;
+            md-card {
+                md-card-title {
+                    padding: 0px;
+                    height: 80px;
 
-                                md-card-title-media {
-                                    margin: 0px !important;
-                                }
+                    md-card-title-media {
+                        margin: 0px !important;
+                    }
 
-                                md-card-title-text {
-                                    margin-left: 10px !important;
-                                }
-                            }
-                        }
+                    md-card-title-text {
+                        margin-left: 10px !important;
+                    }
+                }
+            }
         }
 
         .followers {
@@ -421,10 +434,37 @@ md-progress-linear{
 
                     md-card-title-text {
                         margin-left: 10px !important;
-                        span {
-                            font-weight: bold !important;
-                            font-family: calibri;
-                            font-size: 18px;
+
+                        .md-headline {
+                            font-size: 20px !important;
+                        }
+
+                    }
+                }
+            }
+        }
+
+        .my-reviews {
+            max-height: 400px;
+
+            md-card {
+                md-card-title {
+                    padding: 0px;
+                    height: auto;
+
+                    md-card-title-media {
+                        margin: 0px !important;
+                    }
+
+                    md-card-title-text {
+                        margin-left: 10px !important;
+
+                        .md-headline {
+                            font-variant: small-caps;
+                        }
+
+                        .md-subhead {
+                            font-style: italic !important;
                         }
                     }
                 }
