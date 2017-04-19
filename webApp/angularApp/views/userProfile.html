@@ -10,24 +10,124 @@
                     <span class="md-subhead">Info</span>
                 </md-card-title-text>
             </md-card-title>
-            <div ng-cloak>
-                <md-content>
-                    <md-tabs md-dynamic-height md-border-bottom>
-                        <md-tab label="News Feed">
-                            <md-content class="md-padding">
-                            </md-content>
-                        </md-tab>
-                        <md-tab label="Followers">
-                            <md-content class="md-padding">
-                            </md-content>
-                        </md-tab>
-                        <md-tab label="Following">
-                            <md-content class="md-padding">
-                            </md-content>
-                        </md-tab>
-                    </md-tabs>
-                </md-content>
+            <div class="tabs-wrapper">
+                <ul class="nav nav-tabs tabs-3 red" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#newsfeed" role="tab">Newsfeed</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " data-toggle="tab" href="#followers" role="tab">Followers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " data-toggle="tab" href="#following" role="tab">Following</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " data-toggle="tab" href="#reviews" role="tab">My Reviews</a>
+                    </li>
+                </ul>
             </div>
         </md-card>
+    </div>
+
+
+
+    <!-- Tab panels -->
+    <div class="tab-content card">
+        <!--Panel 1-->
+        <div class="tab-pane fade active" id="newsfeed" role="tabpanel">
+            <div class="col-md-8 friend-checkins">
+                <md-card ng-repeat="friendCheckin in userCtrl.user.newsFeed">
+                    <md-card-title>
+                        <md-card-title-text>
+                            <span class="md-headline">{{friendCheckin.USER_ID }}</span>
+                            <span class="md-subhead">{{ friendCheckin.USER_ID }} checked into {{ friendCheckin.VENUE_ID }}.</span>
+                        </md-card-title-text>
+                    </md-card-title>
+                </md-card>
+            </div>
+            <div class="col-md-4 panel venue-suggestions">
+                Places you might like
+                <div flex-xs flex-gt-xs="100" layout="column">
+                    <md-card ng-repeat="venue in userCtrl.user.suggestedVenues">
+                        <md-card-title>
+                            <md-card-title-media>
+                                <div class="md-media-lg card-media">
+                                    <img style="height: 80px" ng-src="../images/placeholder-{{$index%15}}.jpg">
+                                </div>
+                            </md-card-title-media>
+                            <md-card-title-text>
+                                <span class="md-subhead">{{venue.VENUE_NAME }}</span>
+                            </md-card-title-text>
+                        </md-card-title>
+                    </md-card>
+                </div>
+            </div>
+        </div>
+        <!--/.Panel 1-->
+        <!--Panel 2-->
+        <div class="tab-pane fade row" id="followers" role="tabpanel">
+            <div class="col-md-8 followers">
+                <div class="col-md-4">
+                    <div flex-xs flex-gt-xs="100" layout="column">
+                        <md-card ng-repeat="venue in userCtrl.user.suggestedVenues">
+                            <img style="height: 80px" ng-src="../images/placeholder-{{$index%15}}.jpg">
+                            <md-card-title>
+                                <md-card-title-text>
+                                    <span class="md-subhead">{{venue.VENUE_NAME }}</span>
+                                </md-card-title-text>
+                            </md-card-title>
+                        </md-card>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div flex-xs flex-gt-xs="100" layout="column">
+                        <md-card ng-repeat="venue in userCtrl.user.suggestedVenues">
+                            <md-card-title>
+                                <md-card-title-media>
+                                    <div class="md-media-lg card-media">
+                                        <img style="height: 80px" ng-src="../images/placeholder-{{$index%15}}.jpg">
+                                    </div>
+                                </md-card-title-media>
+                                <md-card-title-text>
+                                    <span class="md-subhead">{{venue.VENUE_NAME }}</span>
+                                </md-card-title-text>
+                            </md-card-title>
+                        </md-card>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 panel venue-suggestions">
+                Places you might like
+                <div flex-xs flex-gt-xs="100" layout="column">
+                    <md-card ng-repeat="venue in userCtrl.user.suggestedVenues">
+                        <md-card-title>
+                            <md-card-title-media>
+                                <div class="md-media-lg card-media">
+                                    <img style="height: 80px" ng-src="../images/placeholder-{{$index%15}}.jpg">
+                                </div>
+                            </md-card-title-media>
+                            <md-card-title-text>
+                                <span class="md-subhead">{{venue.VENUE_NAME }}</span>
+                            </md-card-title-text>
+                        </md-card-title>
+                    </md-card>
+                </div>
+            </div>
+        </div>
+        <!--/.Panel 2-->
+        <!--Panel 3-->
+        <div class="tab-pane fade" id="following" role="tabpanel">
+            <br>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil odit magnam minima, soluta doloribus reiciendis molestiae placeat unde eos molestias. Quisquam aperiam, pariatur. Tempora, placeat ratione porro voluptate odit minima.</p>
+        </div>
+        <!--/.Panel 3-->
+        <!--Panel 4-->
+        <div class="tab-pane fade" id="reviews" role="tabpanel">
+            <br>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil odit magnam minima, soluta doloribus reiciendis molestiae placeat unde eos molestias. Quisquam aperiam, pariatur. Tempora, placeat ratione porro voluptate odit minima.</p>
+        </div>
+        <!--/.Panel 4-->
+    </div>
+
     </div>
 </div>
