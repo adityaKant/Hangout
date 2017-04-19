@@ -231,16 +231,27 @@ nav.header{
     }
 
     .venue-info {
-        margin-top: 20px;
-        font-size: 18px;
-        font-family: calibri;
-
-        .panel {
-            margin-left: 15px;
-            padding: 6px;
-            background-color: white;
-            color: black;
+      margin-top: 20px;
+      font-size: 18px;
+      font-family: calibri;
+      .panel {
+        margin-left: 15px;
+        padding: 6px;
+        background-color: white;
+        color: black;
+        background-image: url("../images/watermarked_cover.png");
+        height: 315px;
+        span{
+          color: white;
         }
+      }
+      .venue-data{
+        font-size: larger;
+        margin: 116px 0 0 32px;
+      }
+      .like-btn{
+        margin-right: 27px;
+      }
     }
 
     .btn {
