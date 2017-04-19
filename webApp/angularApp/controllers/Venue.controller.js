@@ -16,7 +16,8 @@
 
             api.Venues.get(payload, function(response) {
                 vm.venue = response.venue;
-                vm.categories = response.category.map(function(a) {return a.CAT_NAME;});;
+                vm.categories = response.category.map(function(a) {return a.CAT_NAME;});
+                vm.suggestedVenues = response.suggestedVenues;
             },
             function(errResponse) {
             });
