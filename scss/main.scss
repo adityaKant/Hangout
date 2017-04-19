@@ -245,14 +245,32 @@ nav.header{
           color: white;
         }
       }
+
+      .venue-data-container{
+        margin: 166px 27px 0 32px;
+      }
       .venue-data{
         font-size: larger;
-        margin: 116px 0 0 32px;
+        float: left;
+      }
+      md-chips md-chip{
+        background: #5cb85c !important;
       }
       .like-btn{
-        margin-right: 27px;
+        margin-top: 60px;
+      }
+
+    }
+  .review-container{
+    .reviews{
+      .badge-container{
+        span.badge{
+          background-color: yellowgreen !important;
+          width: 3%;
+        }
       }
     }
+  }
 
     .btn {
         background-color: #5bc0de;

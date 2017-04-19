@@ -1,30 +1,44 @@
 <div class="container-fluid" id="venue-details">
-    <div class="row image-slider">
-        Image Slider
-        <slick infinite="true" dots="true" arrows="true" data="photoStream" init-onload="true">
-            <!--<div ng-repeat="i in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]">
-                <img ng-src="../images/placeholder-{{$index%15}}.jpg">
-            </div>-->
-        </slick>
-    </div>
+    <!--<div class="row image-slider">-->
+        <!--Image Slider-->
+        <!--<slick infinite="true" dots="true" arrows="true" data="photoStream" init-onload="true">-->
+            <!--&lt;!&ndash;<div ng-repeat="i in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]">-->
+                <!--<img ng-src="../images/placeholder-{{$index%15}}.jpg">-->
+            <!--</div>&ndash;&gt;-->
+        <!--</slick>-->
+    <!--</div>-->
     <div class="row venue-info">
         <div class="panel" ng-if = "venueCtrl.venue">
-            <span>{{ venueCtrl.venue.VENUE_NAME }}</span></br>
-            <span>Phone: {{ venueCtrl.venue.PHONE }}</span></br>
-            <span>{{ venueCtrl.venue.CITY }}, {{ venueCtrl.venue.COUNTRY }}, {{ venueCtrl.venue.POSTAL_CODE }}</span></br>
-            <span>{{ venueCtrl.venue.RATING }} </span></br>
-            <md-button align="bottom" class="btn" ng-click="ctrl.openModal($event,'logIn')" class="md-raised md-accent">
-                Add to Favourites
-            </md-button>
+            <div class="venue-data-container">
+                <div class="venue-data">
+                    <span ng-if = "venueCtrl.venue.VENUE_NAME">{{ venueCtrl.venue.VENUE_NAME }}</span></br>
+                    <span ng-if = "venueCtrl.venue.PHONE">Phone: {{ venueCtrl.venue.PHONE }}</span></br>
+                    <span ng-if = "venueCtrl.venue.CITY">{{venueCtrl.venue.CITY}}</span>
+                    <span ng-if="venueCtrl.venue.CITY && venueCtrl.venue.COUNTRY">,</span>
+                    <span ng-if="venueCtrl.venue.COUNTRY">{{ venueCtrl.venue.COUNTRY}}</span>
+                    <span ng-if="venueCtrl.venue.COUNTRY && venueCtrl.venue.POSTAL_CODE">,</span>
+                    <span ng-if="venueCtrl.venue.POSTAL_CODE">{{ venueCtrl.venue.POSTAL_CODE}}</span></br>
+                    <md-chips readonly="true" ng-model="venueCtrl.categories" md-max-chips="5">
+                    </md-chips>
+                </div>
+                <div class="pull-right like-btn">
+                    <span class="pull-right" ng-if = "venueCtrl.venue">{{venueCtrl.venue.RATING}} / 10 </span></br>
+                    <md-button align="bottom" class="btn" ng-click="ctrl.openModal($event,'logIn')" class="md-raised md-accent">
+                        Add to Favourites
+                    </md-button>
+                </div>
+            </div>
+
+
         </div>
     </div>
 
-    <div class="row">
+    <div class="row reviews-container">
         <div class="col-md-9">
             <div class="panel review-count">
                 <div class="text">
                     <span>
-                        Total {{ venueCtrl.venue.REVIEW_COUNT }} reviews and {{ venueCtrl.venue.CHECK_IN_COUNT }} check-ins for this place.
+                        Total {{ venueCtrl.reviews.length }} reviews and {{ venueCtrl.venue.CHECK_IN_COUNT }} check-ins for this place.
                     </span><br>
 
                 </div>
@@ -37,32 +51,26 @@
                 </div>
             </div>
             <div class="panel reviews">
-                <md-card class="review-container">
-                <md-card-title>
-                    <md-card-title-text>
-                        <span class="md-headline">Review</span>
-                        <span class="md-subhead">rating</span>
-                    </md-card-title-text>
-                </md-card-title>
-                </md-card>
+                <div>
 
-                <md-card class="review-container">
-                    <md-card-title>
-                        <md-card-title-text>
-                            <span class="md-headline">Review</span>
-                            <span class="md-subhead">rating</span>
-                        </md-card-title-text>
-                    </md-card-title>
-                </md-card>
+                    <md-card ng-repeat="review in venueCtrl.reviews">
+                        <md-card-title>
+                            <md-card-title-text>
+                                <span class="md-headline">{{review.FNAME }} {{review.LNAME}}</span>
+                                <div class="badge-container">
+                                    <span class="badge md-subhead">{{ review.RATING }} </span>
+                                </div>
 
-                <md-card class="review-container">
-                    <md-card-title>
-                        <md-card-title-text>
-                            <span class="md-headline">Review</span>
-                            <span class="md-subhead">rating</span>
-                        </md-card-title-text>
-                    </md-card-title>
-                </md-card>
+                                <p>
+                                    {{review.REVIEW_TEXT}}
+                                </p>
+                            </md-card-title-text>
+                            <md-card-content>
+
+                            </md-card-content>
+                        </md-card-title>
+                    </md-card>
+                </div>
             </div>
         </div>
         <div class="col-md-3 panel suggestions">

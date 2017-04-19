@@ -9,14 +9,22 @@
                 id : venueId
             }
             api.Venues.get(payload, function(response) {
-                console.log(response);
                 vm.venue = response.venue;
+                vm.categories = response.category.map(function(a) {return a.CAT_NAME;});;
             },
             function(errResponse) {
-
             });
+            getVenueReviews();
 
-
-            vm.images = ['1','2','3'];
+            function getVenueReviews() {
+                api.Venues.reviews({id: $stateParams.id}, function (response) {
+                    vm.reviews = response.reviews;
+                },
+                function (errResponse) {
+                    debugger;
+                })
+            }
         }
+
+
 }) ();
