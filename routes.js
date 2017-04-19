@@ -24,9 +24,9 @@ module.exports = function(app) {
     req.venueID = req.params.id;
     likeVenue(req).then (function(obj){
       if(obj == undefined)
-        res.send('Bad Request', 400);
+        res.status(400).send({status : 'Bad Request'});
       else {
-        res.send('Updated', 200);
+        let respose = {status : "Accomplished"};
       }
     });
   });
@@ -73,7 +73,7 @@ module.exports = function(app) {
     });
   });
 
-  app.get('/user/review', decode, function(req, res){
+  app.get('/me/reviews', decode, function(req, res){
     getUserReview(req.userID).then (function(obj){
     res.send(obj);
     });
