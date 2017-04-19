@@ -3,26 +3,29 @@
         <md-card>
             <md-card-title>
                 <md-card-title-media>
-                    <div class="md-media-md card-media"></div>
+                    <div class="md-media-md card-media">
+                        <img style="height: 80px" ng-src="../images/person-0.jpg">
+                    </div>
                 </md-card-title-media>
                 <md-card-title-text>
-                    <span class="md-headline">User A</span>
-                    <span class="md-subhead">Info</span>
+                    <span class="md-headline">{{userCtrl.user.user[0].FNAME}} {{userCtrl.user.user[0].LNAME}}</span>
+                    <span class="md-subhead">{{userCtrl.user.userStats.check_ins}} Check-in(s)</span>
+                    <span class="md-subhead">{{userCtrl.user.userStats.reviews}} Reviews</span>
                 </md-card-title-text>
             </md-card-title>
             <div class="tabs-wrapper">
                 <ul class="nav nav-tabs tabs-3 red" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" data-toggle="tab" href="#newsfeed" role="tab">Newsfeed</a>
+                        <a class="nav-link active" data-toggle="tab" data-target="#newsfeed" role="tab">Newsfeed</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " data-toggle="tab" href="#followers" role="tab">Followers</a>
+                        <a class="nav-link " data-toggle="tab" data-target="#followers" role="tab">Followers</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " data-toggle="tab" href="#following" role="tab">Following</a>
+                        <a class="nav-link " data-toggle="tab" data-target="#following" role="tab">Following</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " data-toggle="tab" href="#reviews" role="tab">My Reviews</a>
+                        <a class="nav-link " data-toggle="tab" data-target="#reviews" role="tab">My Reviews</a>
                     </li>
                 </ul>
             </div>
@@ -34,18 +37,23 @@
     <!-- Tab panels -->
     <div class="tab-content card">
         <!--Panel 1-->
-        <div class="tab-pane fade active" id="newsfeed" role="tabpanel">
+        <div class="row tab-pane fade active" id="newsfeed" role="tabpanel">
             <div class="col-md-8 friend-checkins">
                 <md-card ng-repeat="friendCheckin in userCtrl.user.newsFeed">
                     <md-card-title>
+                        <md-card-title-media>
+                            <div class="md-media-lg card-media">
+                                <img style="height: 80px" ng-src="../images/person-{{$index%4}}.jpg">
+                            </div>
+                        </md-card-title-media>
                         <md-card-title-text>
-                            <span class="md-headline">{{friendCheckin.USER_ID }}</span>
-                            <span class="md-subhead">{{ friendCheckin.USER_ID }} checked into {{ friendCheckin.VENUE_ID }}.</span>
+                            <span class="md-headline">{{friendCheckin.FNAME }} {{friendCheckin.LNAME }}</span>
+                            <span class="md-subhead">{{friendCheckin.FNAME }} checked into {{ friendCheckin.VENUE_NAME }}.</span>
                         </md-card-title-text>
                     </md-card-title>
                 </md-card>
             </div>
-            <div class="col-md-4 panel venue-suggestions">
+            <div class="col-md-4 panel suggestions">
                 Places you might like
                 <div flex-xs flex-gt-xs="100" layout="column">
                     <md-card ng-repeat="venue in userCtrl.user.suggestedVenues">
@@ -67,47 +75,31 @@
         <!--Panel 2-->
         <div class="tab-pane fade row" id="followers" role="tabpanel">
             <div class="col-md-8 followers">
-                <div class="col-md-4">
-                    <div flex-xs flex-gt-xs="100" layout="column">
-                        <md-card ng-repeat="venue in userCtrl.user.suggestedVenues">
-                            <img style="height: 80px" ng-src="../images/placeholder-{{$index%15}}.jpg">
+                <ul>
+                    <li ng-repeat = "follower in userCtrl.user.followers">
+                        <md-card>
+                            <img style="height: 90px" ng-src="../images/cartoon-{{$index%4}}.jpg">
                             <md-card-title>
                                 <md-card-title-text>
-                                    <span class="md-subhead">{{venue.VENUE_NAME }}</span>
+                                    <span class="md-subhead">{{follower.FNAME }} {{follower.LNAME }}</span>
                                 </md-card-title-text>
                             </md-card-title>
                         </md-card>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div flex-xs flex-gt-xs="100" layout="column">
-                        <md-card ng-repeat="venue in userCtrl.user.suggestedVenues">
-                            <md-card-title>
-                                <md-card-title-media>
-                                    <div class="md-media-lg card-media">
-                                        <img style="height: 80px" ng-src="../images/placeholder-{{$index%15}}.jpg">
-                                    </div>
-                                </md-card-title-media>
-                                <md-card-title-text>
-                                    <span class="md-subhead">{{venue.VENUE_NAME }}</span>
-                                </md-card-title-text>
-                            </md-card-title>
-                        </md-card>
-                    </div>
-                </div>
+                    </li>
+                </ul>
             </div>
-            <div class="col-md-4 panel venue-suggestions">
-                Places you might like
+            <div class="col-md-4 panel suggestions">
+                Friend Suggestions
                 <div flex-xs flex-gt-xs="100" layout="column">
-                    <md-card ng-repeat="venue in userCtrl.user.suggestedVenues">
+                    <md-card ng-repeat="person in userCtrl.user.suggestedPeople">
                         <md-card-title>
                             <md-card-title-media>
                                 <div class="md-media-lg card-media">
-                                    <img style="height: 80px" ng-src="../images/placeholder-{{$index%15}}.jpg">
+                                    <img style="height: 80px" ng-src="../images/cartoon-{{$index%6}}.jpg">
                                 </div>
                             </md-card-title-media>
                             <md-card-title-text>
-                                <span class="md-subhead">{{venue.VENUE_NAME }}</span>
+                                <span class="md-subhead">{{person.FNAME}} {{person.LNAME}}</span>
                             </md-card-title-text>
                         </md-card-title>
                     </md-card>
@@ -117,14 +109,51 @@
         <!--/.Panel 2-->
         <!--Panel 3-->
         <div class="tab-pane fade" id="following" role="tabpanel">
-            <br>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil odit magnam minima, soluta doloribus reiciendis molestiae placeat unde eos molestias. Quisquam aperiam, pariatur. Tempora, placeat ratione porro voluptate odit minima.</p>
+            <div class="col-md-8 followers">
+                <ul>
+                    <li ng-repeat = "following in userCtrl.user.following">
+                        <md-card>
+                            <img style="height: 90px" ng-src="../images/cartoon-{{$index%6}}.jpg">
+                            <md-card-title>
+                                <md-card-title-text>
+                                    <span class="md-subhead">{{following.FNAME }} {{following.LNAME }}</span>
+                                </md-card-title-text>
+                            </md-card-title>
+                        </md-card>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-4 panel suggestions">
+                Friend Suggestions
+                <div flex-xs flex-gt-xs="100" layout="column">
+                    <md-card ng-repeat="person in userCtrl.user.suggestedPeople">
+                        <md-card-title>
+                            <md-card-title-media>
+                                <div class="md-media-lg card-media">
+                                    <img style="height: 80px" ng-src="../images/cartoon-{{$index%6}}.jpg">
+                                </div>
+                            </md-card-title-media>
+                            <md-card-title-text>
+                                <span class="md-subhead">{{person.FNAME}} {{person.LNAME}}</span>
+                            </md-card-title-text>
+                        </md-card-title>
+                    </md-card>
+                </div>
+            </div>
         </div>
         <!--/.Panel 3-->
         <!--Panel 4-->
         <div class="tab-pane fade" id="reviews" role="tabpanel">
-            <br>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil odit magnam minima, soluta doloribus reiciendis molestiae placeat unde eos molestias. Quisquam aperiam, pariatur. Tempora, placeat ratione porro voluptate odit minima.</p>
+            <div class="col-md-8 friend-checkins">
+                <md-card ng-repeat="review in userCtrl.myReviews">
+                    <md-card-title>
+                        <md-card-title-text>
+                            <span class="md-headline">{{review.VENUE_NAME }}</span>
+                            <span class="md-subhead">{{review.REVIEW_TEXT}}</span>
+                        </md-card-title-text>
+                    </md-card-title>
+                </md-card>
+            </div>
         </div>
         <!--/.Panel 4-->
     </div>

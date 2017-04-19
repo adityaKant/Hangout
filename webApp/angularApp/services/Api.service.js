@@ -12,11 +12,19 @@
                     reviews: {
                         method: 'GET',
                         url: '/venues/:id/review'
+                    },
+                    like: {
+                        method : 'POST',
+                        url: '/venues/:id/like'
                     }
                 }),
 
-                Me: $resource('/me',{},{})
-
+                Me: $resource('/me',{},{
+                    myReviews: {
+                        method:'GET',
+                        url: '/me/reviews'
+                    }
+                })
             };
         }])
 })();

@@ -23,8 +23,11 @@
                 </div>
                 <div class="pull-right like-btn">
                     <span class="pull-right" ng-if = "venueCtrl.venue">{{venueCtrl.venue.RATING}} / 10 </span></br>
-                    <md-button align="bottom" class="btn" ng-click="ctrl.openModal($event,'logIn')" class="md-raised md-accent">
+                    <md-button ng-click="venueCtrl.addToFav()" ng-if="venueCtrl.checkIfLikedAlready() && !venueCtrl.liked" align="bottom" class="btn" class="md-raised md-accent">
                         Add to Favourites
+                    </md-button>
+                    <md-button ng-if="venueCtrl.currentUser.FNAME && !venueCtrl.checkIfLikedAlready() || venueCtrl.liked" align="bottom" class="btn" ng-click="ctrl.openModal($event,'logIn')" class="md-raised md-accent">
+                        Liked
                     </md-button>
                 </div>
             </div>
@@ -75,7 +78,7 @@
         </div>
         <div class="col-md-3 panel suggestions">
             <div class="row map">
-                <nvd3 options='venueCtrl.options' data='venueCtrl.data'></nvd3>
+                <nvd3 options='venueCtrl.chartOptions' data='venueCtrl.chartData'></nvd3>
             </div>
             <div class="row suggestionsOne">
                 <div class="row text">
