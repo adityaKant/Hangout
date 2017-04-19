@@ -5,17 +5,19 @@
     ])
             .controller("VenueController", venueCtrl);
 
-        function venueCtrl(api, $stateParams, $donutChart) {
+        function venueCtrl(api, $stateParams, $donutChart, $currentUser) {
             var  vm = this;
             var venueId = $stateParams.id;
             var payload = {
                 id : venueId
             };
+            vm.currentUser = $currentUser.get();
             vm.chartOptions = $donutChart.getOptions();
 
             api.Venues.get(payload, function(response) {
                 vm.venue = response.venue;
-                vm.categories = response.category.map(function(a) {return a.CAT_NAME;});;
+                vm.categories = response.category.map(function(a) {return a.CAT_NAME;});
+                vm.suggestedVenues = response.suggestedVenues;
             },
             function(errResponse) {
             });
@@ -28,6 +30,28 @@
                     vm.chartData = getData(response.rating);
                 },
                 function (errResponse) {
+                })
+            }
+
+            vm.checkIfLikedAlready = function () {
+                if(!vm.currentUser.FNAME)
+                    return false;
+                if(vm.currentUser.likedPlaces.filter(function(venue){
+                    return venue.VENUE_ID == $stateParams.id
+                }).length != 0)
+                    return false;
+                return true;
+            }
+
+            vm.addToFav = function (){
+                api.Venues.like({id: $stateParams.id},function (response) {
+                    vm.liked = true;
+                    vm.currentUser.likedPlaces.push(
+                        {
+                            VENUE_ID : $stateParams.id
+                        });
+                }, function (errResponse) {
+                    debugger
                 })
             }
         }

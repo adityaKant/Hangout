@@ -12,6 +12,10 @@
                     reviews: {
                         method: 'GET',
                         url: '/venues/:id/review'
+                    },
+                    like: {
+                        method : 'POST',
+                        url: '/venues/:id/like'
                     }
                 }),
 

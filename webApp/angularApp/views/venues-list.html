@@ -49,19 +49,25 @@
                                 </div>
                             </div>
                             <div flex="20">
-                                <div flex="50">
-                                    <md-input-container>
-                                        <label>Rating</label>
-                                        <md-select ng-model="VenuesListCtrl.filter.rating">
-                                            <md-optgroup>
-                                                <md-option ng-value="rating.value" ng-repeat="rating in VenuesListCtrl.ratingsOptions">
-                                                    {{ rating.option }}
-                                                </md-option>
-                                            </md-optgroup>
-                                        </md-select>
-                                    </md-input-container>
+                                <div layout="row" layout-align="center center">
+                                    <div flex>
+                                        <md-checkbox ng-model="VenuesListCtrl.filter.sort" aria-label="Checkbox 1">
+                                            Sort by Ratings
+                                        </md-checkbox>
+                                    </div>
+                                    <div flex>
+                                        <md-input-container>
+                                            <label>Rating</label>
+                                            <md-select ng-model="VenuesListCtrl.filter.rating">
+                                                <md-optgroup>
+                                                    <md-option ng-value="rating.value" ng-repeat="rating in VenuesListCtrl.ratingsOptions">
+                                                        {{ rating.option }}
+                                                    </md-option>
+                                                </md-optgroup>
+                                            </md-select>
+                                        </md-input-container>
+                                    </div>
                                 </div>
-
                             </div>
                             <div flex="40" class="filter-categories-cntr">
                                 <form name="categories">
