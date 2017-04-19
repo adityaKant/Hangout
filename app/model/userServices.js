@@ -101,6 +101,31 @@ export function insertLike(req)
   });
 }
 
+export function updateFollows(req)
+{
+  return oracledb.getConnection(
+    {
+      user          : "askant",
+      password      : "dbmsproject",
+      connectString : "oracle.cise.ufl.edu:1521/orcl"
+    })
+    .then(async function(connection)
+    {  let $res = await connection.execute(
+        // The statement to execute
+        "Insert into USERGRAPH " +
+        " Values(:user1, :user2)",
+        {user1 : req.userID, user2 : req.toFollow}
+        )
+        doRelease(connection);
+        return {status : "accepted"};
+  })
+  .catch(function(err) {
+  console.error(err);
+  return connection.close;
+
+  });
+}
+
 export function select(user)
 {
   return oracledb.getConnection(

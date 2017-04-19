@@ -10,6 +10,7 @@ export function search(object)
   let name, condCity = '', condState = '', condRating = '', condRadius = '', condPage, condSort=' ROWNUM r ';
 
   if(object.keyword){
+    object.keyword = object.keyword.toUpperCase();
     name =  '%' + object.keyword +  '%';
   }
   else {
@@ -57,7 +58,7 @@ export function search(object)
   condPage = " r > " + start + " and r <= " +  end;
 
   let preparedQuery = 'select VENUE_ID, VENUE_NAME, PHONE, CITY, STATE, RATING, CHECK_IN_COUNT, REVIEW_COUNT from (select' + condSort +', Venue.* ' +
-                      'from venue where venue_name like \''+ name + '\'' +
+                      'from venue where UPPER(venue_name) LIKE  \''+ name + '\'' +
                       condCity + condRating + condState + condRadius + ') where ' + condPage;
 
   console.log(preparedQuery);

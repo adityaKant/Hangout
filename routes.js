@@ -2,7 +2,7 @@ import {signup} from './app/services/signup.js';
 import {signin} from './app/services/signin.js';
 import {venueSearch} from './app/services/venueSearch.js';
 import {venueDetails} from './app/services/venue.js';
-import {userDetails, likeVenue} from './app/services/user.js';
+import {userDetails, likeVenue, addFollower} from './app/services/user.js';
 import {decode} from './app/services/decodeToken.js';
 import {getVenueReview, getUserReview} from './app/services/review.js';
 
@@ -26,7 +26,8 @@ module.exports = function(app) {
       if(obj == undefined)
         res.status(400).send({status : 'Bad Request'});
       else {
-        let respose = {status : "Accomplished"};
+        let response = {status : "Accomplished"};
+        res.send(response);
       }
     });
   });
@@ -63,6 +64,19 @@ module.exports = function(app) {
     req.userID = req.params.id;
     userDetails(req.userID).then (function(obj){
       res.send(obj);
+    });
+  });
+
+  app.post('/users/:id/follow', decode, function(req, res){
+    req.toFollow = req.params.id;
+    addFollower(req).then (function(obj){
+      if(obj == undefined)
+        res.status(400).send({status : 'Bad Request'});
+      else {
+        let response = {status : "Accomplished"};
+        res.send(response);
+      }
+
     });
   });
 
