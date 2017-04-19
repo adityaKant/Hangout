@@ -77,7 +77,7 @@ export function getreviewsUser(userID)
         [userID]
       )
       doRelease(connection);
-      return $res.rows;
+      return {reviews : $res.rows};
   });
 }
 

@@ -7,7 +7,7 @@ oracledb.outFormat = oracledb.OBJECT;
 export function search(object)
 {
 
-  let name, condCity = '', condState = '', condRating = '', condRadius = '', condPage, condSort='';
+  let name, condCity = '', condState = '', condRating = '', condRadius = '', condPage, condSort=' ROWNUM r ';
 
   if(object.keyword){
     name =  '%' + object.keyword +  '%';
@@ -39,7 +39,7 @@ export function search(object)
 
     if(filters.sort)
     {
-      condSort = ' ORDER BY RATING DESC '
+      condSort = ' row_number() over (order by rating desc) as r ';
     }
 
   }
@@ -56,9 +56,9 @@ export function search(object)
   }
   condPage = " r > " + start + " and r <= " +  end;
 
-  let preparedQuery = 'select VENUE_ID, VENUE_NAME, PHONE, CITY, STATE, RATING, CHECK_IN_COUNT, REVIEW_COUNT from (select ROWNUM r, Venue.* ' +
+  let preparedQuery = 'select VENUE_ID, VENUE_NAME, PHONE, CITY, STATE, RATING, CHECK_IN_COUNT, REVIEW_COUNT from (select' + condSort +', Venue.* ' +
                       'from venue where venue_name like \''+ name + '\'' +
-                      condCity + condRating + condState + condRadius + condSort + ') where ' + condPage;
+                      condCity + condRating + condState + condRadius + ') where ' + condPage;
 
   console.log(preparedQuery);
 
@@ -107,9 +107,27 @@ export function getDetails(object)
           "WHERE vb.CAT_ID = cat.CAT_ID AND vb.VENUE_ID = :id ",
           [object.id]
           )
+          var bindvars = {
+          p1:  object.id,
+          ret:  { dir: oracledb.BIND_OUT, type: oracledb.STRING, maxSize: 500 }
+          };
+        let temp = await connection.execute(
+          "BEGIN :ret := suggested_venues(:p1); END;",
+          bindvars);
 
+          var venueIDs = temp.outBinds.ret.split('|');
+
+          let $res1 = await connection.execute(
+              // The statement to execute
+              "select * " +
+                "from venue " +
+                "WHERE VENUE_ID = :id1 OR VENUE_ID = :id2 ",
+              {id1 : venueIDs[0], id2 : venueIDs[1]}
+              )
+
+          console.log(temp.outBinds);
         doRelease(connection);
-        return {venue : $res.rows[0], category : categories.rows};
+        return {venue : $res.rows[0], category : categories.rows, suggestedVenues  : $res1.rows};
   })
   .catch(function(err) {
   console.error(err);
