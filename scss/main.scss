@@ -231,17 +231,46 @@ nav.header{
     }
 
     .venue-info {
-        margin-top: 20px;
-        font-size: 18px;
-        font-family: calibri;
-
-        .panel {
-            margin-left: 15px;
-            padding: 6px;
-            background-color: white;
-            color: black;
+      margin-top: 20px;
+      font-size: 18px;
+      font-family: calibri;
+      .panel {
+        margin-left: 15px;
+        padding: 6px;
+        background-color: white;
+        color: black;
+        background-image: url("../images/watermarked_cover.png");
+        height: 315px;
+        span{
+          color: white;
         }
+      }
+
+      .venue-data-container{
+        margin: 166px 27px 0 32px;
+      }
+      .venue-data{
+        font-size: larger;
+        float: left;
+      }
+      md-chips md-chip{
+        background: #5cb85c !important;
+      }
+      .like-btn{
+        margin-top: 60px;
+      }
+
     }
+  .review-container{
+    .reviews{
+      .badge-container{
+        span.badge{
+          background-color: yellowgreen !important;
+          width: 3%;
+        }
+      }
+    }
+  }
 
     .btn {
         background-color: #5bc0de;
@@ -284,7 +313,8 @@ nav.header{
         }
 
         .map {
-            background-color: white;
+          background-color: white;
+          height: 20em;
         }
 
         .suggestionsOne {
@@ -307,23 +337,99 @@ md-progress-linear{
 
 #userProfile {
     margin-top: 105px;
-
     .userInfo {
         margin: 0px !important;
-    }
 
-    md-card-actions {
-        margin-bottom: 0px !important;
+        md-card {
+            height: 150px !important;
 
-        .md-button {
-                border: 1px solid lightgray;
-                background-color: #d6e2e4;
-                border-top-left-radius: 8px;
-                border-top-right-radius: 8px;
-                margin: 0px !important;
-
+            md-card-title-text {
+                margin-left: 20px;
             }
+        }
     }
+    .tab-content {
+        margin-top: 20px !important;
+        .friend-checkins {
+            max-height: 400px;
 
+                        md-card {
+                            md-card-title {
+                                padding: 0px;
+                                height: 80px;
+
+                                md-card-title-media {
+                                    margin: 0px !important;
+                                }
+
+                                md-card-title-text {
+                                    margin-left: 10px !important;
+                                }
+                            }
+                        }
+        }
+
+        .followers {
+            ul {
+                li {
+                    display: inline-block;
+                    width: 12.33%;
+                    margin-right: 60px;
+                    margin-top: 40px;
+                    padding: 0px;
+
+                    md-card {
+                        height: 147px !important;
+                        box-shadow: 0px 0px 0px 0px !important;
+                        img {
+                            height: 80% !important;
+                            border-radius: 100%;
+                        }
+
+                        md-card-title {
+                            margin: 0px !important;
+                            padding-top: 0px;
+                            text-align: -webkit-center;
+
+                            span {
+                                font-size: 15px;
+                                font-weight: bold;
+                                font-family: calibri;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .suggestions {
+            max-height: 400px;
+
+            md-card {
+                box-shadow: 0px 0px 0px 0px !important;
+                md-card-title {
+                    padding: 0px;
+                    height: 80px;
+
+                    md-card-title-media {
+                        margin: 0px !important;
+
+                        img {
+                            border-radius: 30% !important;
+                        }
+                    }
+
+                    md-card-title-text {
+                        margin-left: 10px !important;
+                        span {
+                            font-weight: bold !important;
+                            font-family: calibri;
+                            font-size: 18px;
+                        }
+                    }
+                }
+            }
+        }
+    }
 
 }

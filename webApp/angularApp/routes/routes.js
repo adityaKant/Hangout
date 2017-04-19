@@ -31,8 +31,8 @@
                     controller: 'VenueController',
                     controllerAs: 'venueCtrl'
                 })
-                 .state('UserProfile',{
-                    url: '/UserProfile',
+                 .state('userProfile',{
+                    url: '/myprofile',
                     templateUrl: "angularApp/views/userProfile.html",
                     controller: 'UserController',
                     controllerAs: 'userCtrl'

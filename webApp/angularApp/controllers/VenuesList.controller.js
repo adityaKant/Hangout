@@ -1,9 +1,11 @@
 (function(){
 
-    angular.module("VenuesList.controller",[])
+    angular.module("VenuesList.controller",[
+        "horizontalChart.service"
+    ])
         .controller('VenuesListController', venueListCtrl);
 
-    function venueListCtrl(api, $venueList, $stateParams, $progressBarFlag, $anchorScroll, $location, $constants) {
+    function venueListCtrl(api, $venueList, $stateParams, $progressBarFlag, $anchorScroll, $location, $constants, $horizontalChart) {
         var vm = this;
         vm.filter = {};
         vm.filter.categories = [];
@@ -20,6 +22,10 @@
         vm.radiusOptions = $constants.radius();
         var location;
 
+        vm.graphOptions = $horizontalChart.getOptions();
+
+        vm.graphData = $horizontalChart.getData(vm.venues.checkinArr, vm.venues.reviewsCount)
+
         var getVenuesList = function(payload){
             progressBar.flag = true;
             api.Venues.get(payload,function (response) {
@@ -27,6 +33,8 @@
                 $anchorScroll();
                 progressBar.flag = false;
                 vm.venues.venues = response.venues;
+                $venueList.performAnalytics();
+
                 if(response.venues.length < per)
                     vm.nextPageDisabled = true;
                 else
@@ -109,5 +117,8 @@
 
             getVenuesList(payload);
         };
+
     }
+
+
 })();

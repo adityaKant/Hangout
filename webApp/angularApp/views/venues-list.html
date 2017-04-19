@@ -49,19 +49,25 @@
                                 </div>
                             </div>
                             <div flex="20">
-                                <div flex="50">
-                                    <md-input-container>
-                                        <label>Rating</label>
-                                        <md-select ng-model="VenuesListCtrl.filter.rating">
-                                            <md-optgroup>
-                                                <md-option ng-value="rating.value" ng-repeat="rating in VenuesListCtrl.ratingsOptions">
-                                                    {{ rating.option }}
-                                                </md-option>
-                                            </md-optgroup>
-                                        </md-select>
-                                    </md-input-container>
+                                <div layout="row" layout-align="center center">
+                                    <div flex>
+                                        <md-checkbox ng-model="VenuesListCtrl.filter.sort" aria-label="Checkbox 1">
+                                            Sort by Ratings
+                                        </md-checkbox>
+                                    </div>
+                                    <div flex>
+                                        <md-input-container>
+                                            <label>Rating</label>
+                                            <md-select ng-model="VenuesListCtrl.filter.rating">
+                                                <md-optgroup>
+                                                    <md-option ng-value="rating.value" ng-repeat="rating in VenuesListCtrl.ratingsOptions">
+                                                        {{ rating.option }}
+                                                    </md-option>
+                                                </md-optgroup>
+                                            </md-select>
+                                        </md-input-container>
+                                    </div>
                                 </div>
-
                             </div>
                             <div flex="40" class="filter-categories-cntr">
                                 <form name="categories">
@@ -88,6 +94,9 @@
             </div>
         </div>
         <div class="col-md-8">
+            <div class="panel map" ng-if="VenuesListCtrl.venues.venues">
+                <nvd3 options='VenuesListCtrl.graphOptions' data='VenuesListCtrl.graphData'></nvd3>
+            </div>
             <div class="panel panel-default">
                 <!-- Default panel contents -->
                 <div class="panel-heading">Search results for : {{VenuesListCtrl.searchResultsFor}}</div>
@@ -106,7 +115,7 @@
                     </ul>
                 </nav>
                 <div class="panel-body scrollable-list" >
-                    <md-content ng-if = "!VenueListCtrl.venues.venues">
+                    <md-content ng-if = "VenuesListCtrl.venues.venues">
                         <md-card ui-sref="getVenue({id: venue.VENUE_ID})" ng-repeat = "venue in VenuesListCtrl.venues.venues">
                             <md-card-title>
                                 <md-card-title-text>
