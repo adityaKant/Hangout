@@ -72,7 +72,32 @@ export function update(user)
   })
   .catch(function(err) {
   console.error(err);
-  return conn.close();
+  return connection.close();
+  });
+}
+
+export function insertLike(req)
+{
+  return oracledb.getConnection(
+    {
+      user          : "askant",
+      password      : "dbmsproject",
+      connectString : "oracle.cise.ufl.edu:1521/orcl"
+    })
+    .then(async function(connection)
+    {  let $res = await connection.execute(
+        // The statement to execute
+        "Insert into likes " +
+        " Values(:user1, :venue1)",
+        {user1 : req.userID, venue1 : req.venueID}
+        )
+        doRelease(connection);
+        return {status : "accepted"};
+  })
+  .catch(function(err) {
+  console.error(err);
+  return connection.close;
+
   });
 }
 
@@ -154,7 +179,7 @@ export function getDataForUserPage(userID)
       let $res4 = await connection.execute(
         // Places visited by friends.
         ' SELECT CH.VENUE_ID, V.VENUE_NAME,  '+
-        '   CH.USER_ID, U2.FNAME, U2.LNAME   '+
+        '   CH.USER_ID, U2.FNAME, U2.LNAME, CH.TIME   '+
         ' FROM USER2 U   '+
         ' INNER JOIN USERGRAPH UG   '+
         ' ON U.USER_ID = UG.FOLLOWER_ID   '+
@@ -164,7 +189,7 @@ export function getDataForUserPage(userID)
         ' ON CH.VENUE_ID = V.VENUE_ID '+
         ' INNER JOIN USER2 U2  '+
         ' ON CH.USER_ID   = U2.USER_ID '+
-        ' WHERE U.USER_ID = :id   ',
+        ' WHERE U.USER_ID = :id  ORDER BY CH.TIME DESC ',
         [userID]
         );
 
@@ -177,6 +202,16 @@ export function getDataForUserPage(userID)
         ' AND UG1.FOLLOWER_ID = :id AND U.USER_ID = UG2.FOLLOWER_ID  ',
         [userID]
         );
+
+        let $res6 = await connection.execute(
+          // Suggested people to follow
+          ' SELECT V.VENUE_ID, V.VENUE_NAME   '+
+          ' FROM USER2 U,   '+
+          '   LIKES L, VENUE V '+
+          ' WHERE U.USER_ID   = L.USER_ID   '+
+          ' AND U.USER_ID = :id AND L.VENUE_ID = V.VENUE_ID  ',
+          [userID]
+          );
 
       let $res = await connection.execute(
           // The statement to execute
@@ -202,7 +237,7 @@ export function getDataForUserPage(userID)
           [userID]
       );
         doRelease(connection);
-        return {user : $res.rows, userStats:{reviews : reviewCount.rows[0].A, check_ins : checkinCount.rows[0].A}, suggestedVenues : $res1.rows, followers : $res2.rows, following : $res3.rows, newsFeed : $res4.rows, suggestedPeople : $res5.rows};
+        return {user : $res.rows, userStats:{reviews : reviewCount.rows[0].A, check_ins : checkinCount.rows[0].A}, suggestedVenues : $res1.rows, followers : $res2.rows, following : $res3.rows, newsFeed : $res4.rows, suggestedPeople : $res5.rows, likes : $res6.rows};
       })
       .catch(function(err) {
   console.error(err);
