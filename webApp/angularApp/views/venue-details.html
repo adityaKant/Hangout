@@ -60,13 +60,11 @@
                         <md-card-title>
                             <md-card-title-text>
                                 <span class="md-headline">{{review.FNAME }} {{review.LNAME}}</span>
-                                <div class="badge-container">
-                                    <span class="badge md-subhead">{{ review.RATING }} </span>
-                                </div>
+                                <span class="md-subhead">Rated: {{ review.RATING }} </span>
 
-                                <p>
+                                <span class="md-subhead">
                                     {{review.REVIEW_TEXT}}
-                                </p>
+                                </span>
                             </md-card-title-text>
                             <md-card-content>
 
@@ -76,59 +74,33 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-3 panel suggestions">
-            <div class="row map">
+        <div class="col-md-3 side-container">
+            <div class="row panel">
                 <nvd3 options='venueCtrl.chartOptions' data='venueCtrl.chartData'></nvd3>
             </div>
-            <div class="row suggestionsOne">
-                <div class="row text">
-                    <span>
-                        You may also like
-                    </span><br>
-                </div>
-                <div class="row suggestion-container">
-                    <div class="col-md-3">
-                        Image
-                    </div>
-                    <div class="col-md-9">
-                        <span>
-                            Outlet Name
-                        </span><br>
-                        <span>
-                            Location
-                        </span>
-                    </div>
-                </div>
 
-                <div class="row suggestion-container">
-                    <div class="col-md-3">
-                        Image
-                    </div>
-                    <div class="col-md-9">
-                        <span>
-                            Outlet Name
-                        </span><br>
-                        <span>
-                            Location
-                        </span>
-                    </div>
-                </div>
+            <div class="row panel suggestions">
+                Places you may like:
+                <div flex-xs flex-gt-xs="100" layout="column">
+                    <md-card ng-repeat="venue in venueCtrl.suggestedVenues" ui-sref="getVenue({id:venue.VENUE_ID})">
+                        <md-card-title>
+                            <md-card-title-media>
+                                <div class="md-media-lg card-media">
+                                    <img style="height: 80px" ng-src="../images/placeholder-{{$index%15}}.jpg">
+                                </div>
+                            </md-card-title-media>
+                            <md-card-title-text>
+                                <span class="md-headline">{{venue.VENUE_NAME}}</span>
+                                <span class="md-headline">{{venue.PHONE}}</span>
+                                <span class="md-headline">{{venue.CITY}}</span>
 
-                <div class="row suggestion-container">
-                    <div class="col-md-3">
-                        Image
-                    </div>
-                    <div class="col-md-9">
-                        <span>
-                            Outlet Name
-                        </span><br>
-                        <span>
-                            Location
-                        </span>
-                    </div>
+                            </md-card-title-text>
+                        </md-card-title>
+                    </md-card>
                 </div>
             </div>
-
         </div>
+
+
     </div>
 </div>

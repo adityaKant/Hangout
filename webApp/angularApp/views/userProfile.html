@@ -48,7 +48,7 @@
                         </md-card-title-media>
                         <md-card-title-text>
                             <span class="md-headline">{{friendCheckin.FNAME }} {{friendCheckin.LNAME }}</span>
-                            <span class="md-subhead">{{friendCheckin.FNAME }} checked into {{ friendCheckin.VENUE_NAME }}.</span>
+                            <span class="md-subhead" ui-sref="getVenue({id:friendCheckin.VENUE_ID})">{{friendCheckin.FNAME }} checked into {{ friendCheckin.VENUE_NAME }}.</span>
                         </md-card-title-text>
                     </md-card-title>
                 </md-card>
@@ -56,7 +56,7 @@
             <div class="col-md-4 panel suggestions">
                 Places you might like
                 <div flex-xs flex-gt-xs="100" layout="column">
-                    <md-card ng-repeat="venue in userCtrl.user.suggestedVenues">
+                    <md-card ng-repeat="venue in userCtrl.user.suggestedVenues" ui-sref="getVenue({id:venue.VENUE_ID})">
                         <md-card-title>
                             <md-card-title-media>
                                 <div class="md-media-lg card-media">
@@ -144,7 +144,7 @@
         <!--/.Panel 3-->
         <!--Panel 4-->
         <div class="tab-pane fade" id="reviews" role="tabpanel">
-            <div class="col-md-8 friend-checkins">
+            <div class="col-md-8 my-reviews">
                 <md-card ng-repeat="review in userCtrl.myReviews">
                     <md-card-title>
                         <md-card-title-text>
@@ -153,6 +153,24 @@
                         </md-card-title-text>
                     </md-card-title>
                 </md-card>
+            </div>
+            <div class="col-md-4 panel suggestions">
+                Places you like:
+                <div flex-xs flex-gt-xs="100" layout="column">
+                    <md-card ng-repeat="venue in userCtrl.user.likes" ui-sref="getVenue({id:venue.VENUE_ID})">
+                            <md-card-title>
+                            <md-card-title-media>
+                                <div class="md-media-lg card-media">
+                                    <img style="height: 80px" ng-src="../images/placeholder-{{$index%15}}.jpg">
+                                </div>
+                            </md-card-title-media>
+                            <md-card-title-text>
+                                <span class="md-headline">
+                                    {{venue.VENUE_NAME}}</span>
+                            </md-card-title-text>
+                        </md-card-title>
+                    </md-card>
+                </div>
             </div>
         </div>
         <!--/.Panel 4-->
