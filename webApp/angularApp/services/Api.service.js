@@ -8,7 +8,12 @@
 
                 Session: $resource('/sign-in',{},{}),
 
-                Venues: $resource('/venues/:id', {id: '@id'}, {}),
+                Venues: $resource('/venues/:id', {id: '@id'}, {
+                    reviews: {
+                        method: 'GET',
+                        url: '/venues/:id/review'
+                    }
+                }),
 
                 Me: $resource('/me',{},{})
 

@@ -2,7 +2,7 @@ import {signup} from './app/services/signup.js';
 import {signin} from './app/services/signin.js';
 import {venueSearch} from './app/services/venueSearch.js';
 import {venueDetails} from './app/services/venue.js';
-import {userDetails} from './app/services/user.js';
+import {userDetails, likeVenue} from './app/services/user.js';
 import {decode} from './app/services/decodeToken.js';
 import {getVenueReview, getUserReview} from './app/services/review.js';
 
@@ -16,6 +16,17 @@ module.exports = function(app) {
       res.send({found  : 'true', user : obj.output.rows[0]});
       else {
         res.send('Invalid userID',400);
+      }
+    });
+  });
+
+  app.post('/venues/:id/like', decode, function(req, res){
+    req.venueID = req.params.id;
+    likeVenue(req).then (function(obj){
+      if(obj == undefined)
+        res.send('Bad Request', 400);
+      else {
+        res.send('Updated', 200);
       }
     });
   });
