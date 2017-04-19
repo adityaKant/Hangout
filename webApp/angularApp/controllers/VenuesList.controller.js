@@ -1,9 +1,11 @@
 (function(){
 
-    angular.module("VenuesList.controller",[])
+    angular.module("VenuesList.controller",[
+        "horizontalChart.service"
+    ])
         .controller('VenuesListController', venueListCtrl);
 
-    function venueListCtrl(api, $venueList, $stateParams, $progressBarFlag, $anchorScroll, $location, $constants) {
+    function venueListCtrl(api, $venueList, $stateParams, $progressBarFlag, $anchorScroll, $location, $constants, $horizontalChart) {
         var vm = this;
         vm.filter = {};
         vm.filter.categories = [];
@@ -19,30 +21,10 @@
         vm.usStates = $constants.stateList();
         vm.radiusOptions = $constants.radius();
         var location;
-        var venuesCheckins = [];
-        var reviewCount = [];
 
-        vm.graphOptions = {
-            chart: {
-                type: 'multiBarHorizontalChart',
-                height: 450,
-                x: function(d){return d.label;},
-                y: function(d){return d.value;},
-                //yErr: function(d){ return [-Math.abs(d.value * Math.random() * 0.3), Math.abs(d.value * Math.random() * 0.3)] },
-                showControls: true,
-                showValues: true,
-                duration: 500,
-                xAxis: {
-                    showMaxMin: false
-                },
-                yAxis: {
-                    axisLabel: 'Values',
-                    tickFormat: function(d){
-                        return d3.format(',.0f')(d);
-                    }
-                }
-            }
-        };
+        vm.graphOptions = $horizontalChart.getOptions();
+
+        vm.graphData = $horizontalChart.getData(vm.venues.checkinArr, vm.venues.reviewsCount)
 
         var getVenuesList = function(payload){
             progressBar.flag = true;
@@ -51,9 +33,8 @@
                 $anchorScroll();
                 progressBar.flag = false;
                 vm.venues.venues = response.venues;
-                venuesCheckins = getVenuesCheckins(response.venues);
-                reviewCount = getVenuesReviewCount(response.venues);
-                populateGraph();
+                $venueList.performAnalytics();
+
                 if(response.venues.length < per)
                     vm.nextPageDisabled = true;
                 else
@@ -137,46 +118,7 @@
             getVenuesList(payload);
         };
 
-        function populateGraph() {
-            debugger
-            vm.graphData = [
-                {
-                    "key": "Check-ins",
-                    "color": "#d62728",
-                    "values":   venuesCheckins
-                },
-                {
-                    "key": "Reviews",
-                    "color": "#1f77b4",
-                    "values": reviewCount
-                }
-            ];
-        }
     }
 
-    function getVenuesCheckins(venuesList){
-    debugger
-        var checkinArr = [];
-        angular.forEach(venuesList,function(val,index){
-            var temp = {};
-            temp.label = val.VENUE_NAME;
-            temp.value = val.CHECK_IN_COUNT;
-            checkinArr.push(temp);
-        });
 
-        return checkinArr;
-    }
-
-    function getVenuesReviewCount(venuesList){
-    debugger
-            var reviewArr = [];
-            angular.forEach(venuesList,function(val,index){
-                var temp = {};
-                temp.label = val.VENUE_NAME;
-                temp.value = val.REVIEW_COUNT;
-                reviewArr.push(temp);
-            });
-
-            return reviewArr;
-        }
 })();
