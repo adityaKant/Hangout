@@ -126,8 +126,8 @@ export function getDataForUserPage(userID)
         '   ON CH.VENUE_ID  = VBT.VENUE_ID   '+
         '   WHERE U.USER_ID = :id   '+
         '   )   '+
-        ' AND ROWNUM <= 5   ',
-        [userID]
+        ' AND ROWNUM <= 5   AND V.VENUE_ID NOT IN ( SELECT VENUE_ID FROM LIKES WHERE USER_ID = :id1)',
+        {id : userID, id1 : userID}
         );
       let $res2 = await connection.execute(
         //Followers

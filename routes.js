@@ -4,6 +4,7 @@ import {venueSearch} from './app/services/venueSearch.js';
 import {venueDetails} from './app/services/venue.js';
 import {userDetails} from './app/services/user.js';
 import {decode} from './app/services/decodeToken.js';
+import {getreview} from './app/services/review.js';
 
 
 var bodyParser = require('body-parser');
@@ -52,6 +53,13 @@ module.exports = function(app) {
     req.userID = req.params.id;
     userDetails(req.userID).then (function(obj){
       res.send(obj);
+    });
+  });
+
+  app.get('/venues/:id/review', function(req, res){
+    req.venueID = req.params.id;
+    getreview(req.venueID).then (function(obj){
+    res.send(obj);
     });
   });
 
